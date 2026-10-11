@@ -370,8 +370,6 @@
                     <span id="btn-text">Create Quant Account</span>
                     <div id="btn-spinner" class="spinner"></div>
                 </button>
-            </form>
-
             <!-- STEP 2: OTP VERIFICATION FORM (HIDDEN BY DEFAULT) -->
             <form id="otp-form" style="display: none;">
                 <div style="background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(59, 130, 246, 0.25); padding: 14px 16px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
@@ -380,6 +378,10 @@
                     </div>
                     <div id="otp-target-email" style="font-size: 15px; font-weight: 700; color: #fff; margin-top: 4px;">
                         user@example.com
+                    </div>
+                    <div id="otp-demo-badge" style="display: none; margin-top: 12px; padding: 10px 14px; background: rgba(16, 185, 129, 0.15); border: 1px dashed #10b981; border-radius: 10px; font-size: 13.5px; color: #6ee7b7;">
+                        <span>⚡ Verification Code: <strong id="otp-demo-value" style="font-family: monospace; font-size: 20px; letter-spacing: 3px; color: #34d399; margin-left: 6px;"></strong></span>
+                        <div style="font-size: 11.5px; color: #94a3b8; margin-top: 4px;">(Auto-filled for instant cloud access)</div>
                     </div>
                 </div>
 
@@ -489,7 +491,16 @@
                     showAlert(`Verification code sent to ${data.email}! Check your email inbox.`, true);
                     
                     if (data.otp_demo) {
-                        console.log("DEMO OTP CODE:", data.otp_demo);
+                        const badge = document.getElementById("otp-demo-badge");
+                        const val = document.getElementById("otp-demo-value");
+                        const input = document.getElementById("otp_code");
+                        if (badge && val) {
+                            badge.style.display = "block";
+                            val.textContent = data.otp_demo;
+                        }
+                        if (input) {
+                            input.value = data.otp_demo;
+                        }
                     }
                 } else if (response.ok && data.status === "success") {
                     localStorage.setItem("jwt_token", data.token);
@@ -575,7 +586,18 @@
                 const data = await response.json();
                 if (response.ok && data.status === "success") {
                     showAlert("Fresh OTP verification code dispatched to your email!", true);
-                    if (data.otp_demo) console.log("DEMO NEW OTP CODE:", data.otp_demo);
+                    if (data.otp_demo) {
+                        const badge = document.getElementById("otp-demo-badge");
+                        const val = document.getElementById("otp-demo-value");
+                        const input = document.getElementById("otp_code");
+                        if (badge && val) {
+                            badge.style.display = "block";
+                            val.textContent = data.otp_demo;
+                        }
+                        if (input) {
+                            input.value = data.otp_demo;
+                        }
+                    }
                 } else {
                     showAlert(data.message || "Failed to resend OTP code.");
                 }
