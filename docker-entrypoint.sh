@@ -21,12 +21,13 @@ fi
 echo "🧠 Initializing ML Ensemble Models & Quant Engines..."
 python -c "
 try:
-    from model_persistence import get_model_manager
-    manager = get_model_manager()
+    from predict import ModelManager
+    manager = ModelManager()
     print('✅ ML Model Manager loaded successfully.')
 except Exception as e:
     print(f'⚠️ Warning during ML preloading: {e}')
 "
+
 
 # Launch Gunicorn WSGI Server (Port 5000)
 WORKER_CLASS=${GUNICORN_WORKER_CLASS:-gthread}

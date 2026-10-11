@@ -27,7 +27,6 @@ ENV/
 
 # Data Directories & Backups
 Stock_Data/
-price_data_clean/
 backups/
 data/ticker_validation/
 experiments/raw_walkforward_results.csv

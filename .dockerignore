@@ -26,7 +26,6 @@ ENV/
 
 # Large Datasets and Temp Files
 merge-csv.csv
-price_data_clean/
 Stock_Data/*.csv
 !Stock_Data/RELIANCE.NS.csv
 *.tmp

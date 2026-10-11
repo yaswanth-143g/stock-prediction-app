@@ -100,9 +100,24 @@ def _download_yf_silent(clean_t: str, period: str, interval: str = "1d", timeout
             df = yf.download(clean_t, period=period, interval=interval, progress=False, auto_adjust=True, timeout=timeout)
         if isinstance(df.columns, pd.MultiIndex):
             df.columns = df.columns.get_level_values(0)
-        return df
+        if not df.empty and len(df) > 0:
+            return df
     except Exception:
-        return pd.DataFrame()
+        pass
+
+    # Secondary attempt using Ticker.history (more resilient on cloud provider IP addresses)
+    try:
+        with redirect_stderr(buf_err), redirect_stdout(buf_out):
+            t_obj = yf.Ticker(clean_t)
+            df = t_obj.history(period=period, interval=interval, timeout=timeout)
+        if isinstance(df.columns, pd.MultiIndex):
+            df.columns = df.columns.get_level_values(0)
+        if not df.empty and len(df) > 0:
+            return df
+    except Exception:
+        pass
+
+    return pd.DataFrame()
 
 
 INVALID_TEST_PATTERNS = ["INVALID", "NONEXISTENT", "FAKETICKER", "TESTFAIL", "ABC999"]

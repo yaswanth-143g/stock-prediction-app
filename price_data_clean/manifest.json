@@ -1,0 +1,2002 @@
+{
+    "RELIANCE.NS": {
+        "ticker": "RELIANCE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:13.092199+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "TCS.NS": {
+        "ticker": "TCS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:13.865052+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "INFY.NS": {
+        "ticker": "INFY.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:14.222482+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HDFCBANK.NS": {
+        "ticker": "HDFCBANK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:14.473939+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ICICIBANK.NS": {
+        "ticker": "ICICIBANK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:14.709368+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "SBIN.NS": {
+        "ticker": "SBIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:15.253836+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "LT.NS": {
+        "ticker": "LT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:17.337179+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ITC.NS": {
+        "ticker": "ITC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:17.647216+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HINDUNILVR.NS": {
+        "ticker": "HINDUNILVR.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:18.010803+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BHARTIARTL.NS": {
+        "ticker": "BHARTIARTL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:18.464656+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AXISBANK.NS": {
+        "ticker": "AXISBANK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:19.522178+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KOTAKBANK.NS": {
+        "ticker": "KOTAKBANK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:20.061043+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "MARUTI.NS": {
+        "ticker": "MARUTI.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:20.401393+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ASIANPAINT.NS": {
+        "ticker": "ASIANPAINT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:20.660373+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "SUNPHARMA.NS": {
+        "ticker": "SUNPHARMA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:21.348931+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "TITAN.NS": {
+        "ticker": "TITAN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:21.552324+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ULTRACEMCO.NS": {
+        "ticker": "ULTRACEMCO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:21.846720+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BAJFINANCE.NS": {
+        "ticker": "BAJFINANCE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:22.121501+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "NTPC.NS": {
+        "ticker": "NTPC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:22.391897+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "POWERGRID.NS": {
+        "ticker": "POWERGRID.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:22.602829+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "TATASTEEL.NS": {
+        "ticker": "TATASTEEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:23.473287+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HINDALCO.NS": {
+        "ticker": "HINDALCO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:23.783471+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ABBOTINDIA.NS": {
+        "ticker": "ABBOTINDIA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:26.069190+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "WIPRO.NS": {
+        "ticker": "WIPRO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:26.321414+00:00",
+        "first_date": "2021-10-04",
+        "last_date": "2026-10-09",
+        "rows": 1245,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HCLTECH.NS": {
+        "ticker": "HCLTECH.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:26.584843+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ADANIENT.NS": {
+        "ticker": "ADANIENT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:26.859515+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ADANIPORTS.NS": {
+        "ticker": "ADANIPORTS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:27.108325+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "COALINDIA.NS": {
+        "ticker": "COALINDIA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:27.964249+00:00",
+        "first_date": "2021-10-04",
+        "last_date": "2026-10-09",
+        "rows": 1245,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BPCL.NS": {
+        "ticker": "BPCL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:28.418341+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ONGC.NS": {
+        "ticker": "ONGC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:29.367257+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GRASIM.NS": {
+        "ticker": "GRASIM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:29.823952+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CIPLA.NS": {
+        "ticker": "CIPLA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:30.352479+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DRREDDY.NS": {
+        "ticker": "DRREDDY.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:30.806794+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ETERNAL.NS": {
+        "ticker": "ETERNAL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:32.297526+00:00",
+        "first_date": "2021-07-23",
+        "last_date": "2026-10-09",
+        "rows": 1294,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EICHERMOT.NS": {
+        "ticker": "EICHERMOT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:33.153109+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HEROMOTOCO.NS": {
+        "ticker": "HEROMOTOCO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:33.410344+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DIVISLAB.NS": {
+        "ticker": "DIVISLAB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:34.129387+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "APOLLOHOSP.NS": {
+        "ticker": "APOLLOHOSP.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:35.320252+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "JSWSTEEL.NS": {
+        "ticker": "JSWSTEEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:35.877215+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "NESTLEIND.NS": {
+        "ticker": "NESTLEIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:36.324690+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BAJAJ-AUTO.NS": {
+        "ticker": "BAJAJ-AUTO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:36.691656+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "M&M.NS": {
+        "ticker": "M&M.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:37.746906+00:00",
+        "first_date": "2021-10-04",
+        "last_date": "2026-10-09",
+        "rows": 1245,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "TATACONSUM.NS": {
+        "ticker": "TATACONSUM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:39.473119+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "INDUSINDBK.NS": {
+        "ticker": "INDUSINDBK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:39.940438+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BRITANNIA.NS": {
+        "ticker": "BRITANNIA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:40.232789+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "TECHM.NS": {
+        "ticker": "TECHM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:40.537850+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "TRENT.NS": {
+        "ticker": "TRENT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:42.372555+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BEL.NS": {
+        "ticker": "BEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:42.628544+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HAL.NS": {
+        "ticker": "HAL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:42.955548+00:00",
+        "first_date": "2018-04-02",
+        "last_date": "2026-10-09",
+        "rows": 2111,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "SHRIRAMFIN.NS": {
+        "ticker": "SHRIRAMFIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:44.729829+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AARTIIND.NS": {
+        "ticker": "AARTIIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:45.004097+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ABB.NS": {
+        "ticker": "ABB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:45.660259+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ABFRL.NS": {
+        "ticker": "ABFRL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:46.962239+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ACC.NS": {
+        "ticker": "ACC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:47.223367+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ADANIENSOL.NS": {
+        "ticker": "ADANIENSOL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:47.450118+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ADANIGREEN.NS": {
+        "ticker": "ADANIGREEN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:47.696821+00:00",
+        "first_date": "2018-06-18",
+        "last_date": "2026-10-09",
+        "rows": 2057,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ADANIPOWER.NS": {
+        "ticker": "ADANIPOWER.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:47.934273+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ATGL.NS": {
+        "ticker": "ATGL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:48.478949+00:00",
+        "first_date": "2018-11-05",
+        "last_date": "2026-10-09",
+        "rows": 1963,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AEGISLOG.NS": {
+        "ticker": "AEGISLOG.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:49.071682+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2478,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AFFLE.NS": {
+        "ticker": "AFFLE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:49.629849+00:00",
+        "first_date": "2019-08-08",
+        "last_date": "2026-10-09",
+        "rows": 1777,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AJANTPHARM.NS": {
+        "ticker": "AJANTPHARM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:49.860135+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ALKEM.NS": {
+        "ticker": "ALKEM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:51.199406+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ALLCARGO.NS": {
+        "ticker": "ALLCARGO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:52.067656+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AMBUJACEM.NS": {
+        "ticker": "AMBUJACEM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:52.959263+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ANGELONE.NS": {
+        "ticker": "ANGELONE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:57.275304+00:00",
+        "first_date": "2020-10-05",
+        "last_date": "2026-10-09",
+        "rows": 1493,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "APARINDS.NS": {
+        "ticker": "APARINDS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:57.563985+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "APLAPOLLO.NS": {
+        "ticker": "APLAPOLLO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:57.881885+00:00",
+        "first_date": "2021-10-04",
+        "last_date": "2026-10-09",
+        "rows": 1245,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "APOLLOTYRE.NS": {
+        "ticker": "APOLLOTYRE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:58.184109+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "APTUS.NS": {
+        "ticker": "APTUS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:59.155116+00:00",
+        "first_date": "2021-08-24",
+        "last_date": "2026-10-09",
+        "rows": 1273,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ARVIND.NS": {
+        "ticker": "ARVIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:59.471601+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ASHOKLEY.NS": {
+        "ticker": "ASHOKLEY.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:07:59.823274+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ASTRAL.NS": {
+        "ticker": "ASTRAL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:00.131457+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ATUL.NS": {
+        "ticker": "ATUL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:00.444949+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AUBANK.NS": {
+        "ticker": "AUBANK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:00.733330+00:00",
+        "first_date": "2017-07-11",
+        "last_date": "2026-10-09",
+        "rows": 2290,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AUROPHARMA.NS": {
+        "ticker": "AUROPHARMA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:00.974583+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "AWL.NS": {
+        "ticker": "AWL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:01.164855+00:00",
+        "first_date": "2022-02-08",
+        "last_date": "2026-10-09",
+        "rows": 1158,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BAJAJHLDNG.NS": {
+        "ticker": "BAJAJHLDNG.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:01.423520+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BALKRISIND.NS": {
+        "ticker": "BALKRISIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:01.776440+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BALRAMCHIN.NS": {
+        "ticker": "BALRAMCHIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:02.012721+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BANDHANBNK.NS": {
+        "ticker": "BANDHANBNK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:02.218703+00:00",
+        "first_date": "2018-03-27",
+        "last_date": "2026-10-09",
+        "rows": 2113,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BANKBARODA.NS": {
+        "ticker": "BANKBARODA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:02.755118+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BANKINDIA.NS": {
+        "ticker": "BANKINDIA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:03.379403+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BATAINDIA.NS": {
+        "ticker": "BATAINDIA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:03.609030+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BDL.NS": {
+        "ticker": "BDL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:03.936072+00:00",
+        "first_date": "2018-03-23",
+        "last_date": "2026-10-09",
+        "rows": 2115,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BEML.NS": {
+        "ticker": "BEML.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:04.357162+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BERGEPAINT.NS": {
+        "ticker": "BERGEPAINT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:05.779217+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BHARATFORG.NS": {
+        "ticker": "BHARATFORG.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:06.010452+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BHEL.NS": {
+        "ticker": "BHEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:06.249226+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BIOCON.NS": {
+        "ticker": "BIOCON.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:06.488904+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BIRLACORPN.NS": {
+        "ticker": "BIRLACORPN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:06.714977+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BLS.NS": {
+        "ticker": "BLS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:07.378230+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BLUEDART.NS": {
+        "ticker": "BLUEDART.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:07.612311+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BOSCHLTD.NS": {
+        "ticker": "BOSCHLTD.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:08.276798+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2478,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BRIGADE.NS": {
+        "ticker": "BRIGADE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:08.505094+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "BSOFT.NS": {
+        "ticker": "BSOFT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:09.375571+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CANBK.NS": {
+        "ticker": "CANBK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:09.670464+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CANFINHOME.NS": {
+        "ticker": "CANFINHOME.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:09.967358+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CARBORUNIV.NS": {
+        "ticker": "CARBORUNIV.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:10.333423+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CASTROLIND.NS": {
+        "ticker": "CASTROLIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:11.007483+00:00",
+        "first_date": "2021-10-04",
+        "last_date": "2026-10-09",
+        "rows": 1245,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CDSL.NS": {
+        "ticker": "CDSL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:15.527215+00:00",
+        "first_date": "2017-06-30",
+        "last_date": "2026-10-09",
+        "rows": 2297,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CEATLTD.NS": {
+        "ticker": "CEATLTD.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:15.765648+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CENTRALBK.NS": {
+        "ticker": "CENTRALBK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:16.139894+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CENTURYPLY.NS": {
+        "ticker": "CENTURYPLY.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:16.357058+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CENTURYTEX.NS": {
+        "ticker": "CENTURYTEX.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:08:17.472259+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "CERA.NS": {
+        "ticker": "CERA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:18.279782+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CESC.NS": {
+        "ticker": "CESC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:18.539897+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CGPOWER.NS": {
+        "ticker": "CGPOWER.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:19.180503+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CHAMBLFERT.NS": {
+        "ticker": "CHAMBLFERT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:19.401273+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CHOLAFIN.NS": {
+        "ticker": "CHOLAFIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:19.649999+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CHOLAHLDNG.NS": {
+        "ticker": "CHOLAHLDNG.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:20.034328+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CLEAN.NS": {
+        "ticker": "CLEAN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:20.211292+00:00",
+        "first_date": "2021-07-19",
+        "last_date": "2026-10-09",
+        "rows": 1297,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "COCHINSHIP.NS": {
+        "ticker": "COCHINSHIP.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:20.506692+00:00",
+        "first_date": "2017-08-11",
+        "last_date": "2026-10-09",
+        "rows": 2267,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "COFORGE.NS": {
+        "ticker": "COFORGE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:20.760307+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "COLPAL.NS": {
+        "ticker": "COLPAL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:21.040959+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CONCOR.NS": {
+        "ticker": "CONCOR.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:21.355505+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "COROMANDEL.NS": {
+        "ticker": "COROMANDEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:21.576246+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CRAFTSMAN.NS": {
+        "ticker": "CRAFTSMAN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:21.767839+00:00",
+        "first_date": "2021-03-25",
+        "last_date": "2026-10-09",
+        "rows": 1372,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CREDITACC.NS": {
+        "ticker": "CREDITACC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:21.974356+00:00",
+        "first_date": "2018-08-23",
+        "last_date": "2026-10-09",
+        "rows": 2011,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CROMPTON.NS": {
+        "ticker": "CROMPTON.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:22.719043+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CUMMINSIND.NS": {
+        "ticker": "CUMMINSIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:23.290807+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "CYIENT.NS": {
+        "ticker": "CYIENT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:23.916544+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DABUR.NS": {
+        "ticker": "DABUR.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:24.228029+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DALBHARAT.NS": {
+        "ticker": "DALBHARAT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:24.436558+00:00",
+        "first_date": "2018-12-21",
+        "last_date": "2026-10-09",
+        "rows": 1930,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DATAPATTNS.NS": {
+        "ticker": "DATAPATTNS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:25.089944+00:00",
+        "first_date": "2021-12-24",
+        "last_date": "2026-10-09",
+        "rows": 1189,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DEEPAKNTR.NS": {
+        "ticker": "DEEPAKNTR.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:25.328137+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DELHIVERY.NS": {
+        "ticker": "DELHIVERY.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:25.627391+00:00",
+        "first_date": "2022-05-24",
+        "last_date": "2026-10-09",
+        "rows": 1088,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DEVYANI.NS": {
+        "ticker": "DEVYANI.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:25.833613+00:00",
+        "first_date": "2021-08-16",
+        "last_date": "2026-10-09",
+        "rows": 1278,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DIXON.NS": {
+        "ticker": "DIXON.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:30.038456+00:00",
+        "first_date": "2017-09-18",
+        "last_date": "2026-10-09",
+        "rows": 2243,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "DLF.NS": {
+        "ticker": "DLF.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:30.390342+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EASEMYTRIP.NS": {
+        "ticker": "EASEMYTRIP.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:30.979913+00:00",
+        "first_date": "2021-03-19",
+        "last_date": "2026-10-09",
+        "rows": 1378,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EDELWEISS.NS": {
+        "ticker": "EDELWEISS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:31.270466+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EIDPARRY.NS": {
+        "ticker": "EIDPARRY.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:31.645987+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EIHOTEL.NS": {
+        "ticker": "EIHOTEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:32.126955+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ELGIEQUIP.NS": {
+        "ticker": "ELGIEQUIP.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:32.488369+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EMAMILTD.NS": {
+        "ticker": "EMAMILTD.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:32.861417+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ENDURANCE.NS": {
+        "ticker": "ENDURANCE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:33.141564+00:00",
+        "first_date": "2016-10-19",
+        "last_date": "2026-10-09",
+        "rows": 2470,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ENGINERSIN.NS": {
+        "ticker": "ENGINERSIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:33.502333+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EQUITASBNK.NS": {
+        "ticker": "EQUITASBNK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:33.961146+00:00",
+        "first_date": "2020-11-02",
+        "last_date": "2026-10-09",
+        "rows": 1473,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ERIS.NS": {
+        "ticker": "ERIS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:39.604824+00:00",
+        "first_date": "2017-06-30",
+        "last_date": "2026-10-09",
+        "rows": 2295,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ESCORTS.NS": {
+        "ticker": "ESCORTS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:39.883690+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "EXIDEIND.NS": {
+        "ticker": "EXIDEIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:40.215385+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "FSL.NS": {
+        "ticker": "FSL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:40.699899+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GAIL.NS": {
+        "ticker": "GAIL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:41.070001+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GANESHHOU.NS": {
+        "ticker": "GANESHHOU.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:41.482829+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2478,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GLAXO.NS": {
+        "ticker": "GLAXO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:43.779839+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GLENMARK.NS": {
+        "ticker": "GLENMARK.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:43.979450+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GODREJAGRO.NS": {
+        "ticker": "GODREJAGRO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:44.242919+00:00",
+        "first_date": "2017-10-16",
+        "last_date": "2026-10-09",
+        "rows": 2224,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GODREJCP.NS": {
+        "ticker": "GODREJCP.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:44.458580+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GODREJIND.NS": {
+        "ticker": "GODREJIND.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:44.727692+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GODREJPROP.NS": {
+        "ticker": "GODREJPROP.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:48.170545+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GRANULES.NS": {
+        "ticker": "GRANULES.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:48.796061+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "GSPL.NS": {
+        "ticker": "GSPL.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:08:48.946433+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "GUJGASLTD.NS": {
+        "ticker": "GUJGASLTD.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:08:49.443151+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "HAPPSTMNDS.NS": {
+        "ticker": "HAPPSTMNDS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:49.764450+00:00",
+        "first_date": "2020-09-17",
+        "last_date": "2026-10-09",
+        "rows": 1504,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HAVELLS.NS": {
+        "ticker": "HAVELLS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:50.789112+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HDFCAMC.NS": {
+        "ticker": "HDFCAMC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:51.050198+00:00",
+        "first_date": "2018-08-06",
+        "last_date": "2026-10-09",
+        "rows": 2022,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HDFCLIFE.NS": {
+        "ticker": "HDFCLIFE.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:51.492740+00:00",
+        "first_date": "2017-11-17",
+        "last_date": "2026-10-09",
+        "rows": 2201,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HFCL.NS": {
+        "ticker": "HFCL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:51.918388+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HINDCOPPER.NS": {
+        "ticker": "HINDCOPPER.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:52.242992+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HINDPETRO.NS": {
+        "ticker": "HINDPETRO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:52.527211+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HINDZINC.NS": {
+        "ticker": "HINDZINC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:53.022169+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HOMEFIRST.NS": {
+        "ticker": "HOMEFIRST.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:53.538229+00:00",
+        "first_date": "2021-02-03",
+        "last_date": "2026-10-09",
+        "rows": 1408,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HONAUT.NS": {
+        "ticker": "HONAUT.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:54.763120+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2477,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "HUDCO.NS": {
+        "ticker": "HUDCO.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:54.993450+00:00",
+        "first_date": "2017-05-19",
+        "last_date": "2026-10-09",
+        "rows": 2326,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IDBI.NS": {
+        "ticker": "IDBI.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:08:55.215982+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IDFCFIRSTB.NS": {
+        "ticker": "IDFCFIRSTB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:06.990682+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IEX.NS": {
+        "ticker": "IEX.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:07.231069+00:00",
+        "first_date": "2017-10-23",
+        "last_date": "2026-10-09",
+        "rows": 2220,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IGL.NS": {
+        "ticker": "IGL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:07.448166+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IIFL.NS": {
+        "ticker": "IIFL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:08.208044+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "INDIAMART.NS": {
+        "ticker": "INDIAMART.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:08.436519+00:00",
+        "first_date": "2019-07-04",
+        "last_date": "2026-10-09",
+        "rows": 1802,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "INDIANB.NS": {
+        "ticker": "INDIANB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:09.048949+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "INDHOTEL.NS": {
+        "ticker": "INDHOTEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:09.779834+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IOC.NS": {
+        "ticker": "IOC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:10.219794+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IOB.NS": {
+        "ticker": "IOB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:10.423528+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IPCALAB.NS": {
+        "ticker": "IPCALAB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:10.865223+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2479,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IRCTC.NS": {
+        "ticker": "IRCTC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:11.203743+00:00",
+        "first_date": "2019-10-14",
+        "last_date": "2026-10-09",
+        "rows": 1736,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IRFC.NS": {
+        "ticker": "IRFC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:11.434565+00:00",
+        "first_date": "2021-01-29",
+        "last_date": "2026-10-09",
+        "rows": 1412,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "IREDA.NS": {
+        "ticker": "IREDA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:11.928166+00:00",
+        "first_date": "2023-11-29",
+        "last_date": "2026-10-09",
+        "rows": 712,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "ITDCEM.NS": {
+        "ticker": "ITDCEM.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:09:12.307918+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "JKBANK.NS": {
+        "ticker": "JKBANK.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:09:13.205421+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "JBCHEPHARM.NS": {
+        "ticker": "JBCHEPHARM.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:09:13.364179+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "JINDALSTEL.NS": {
+        "ticker": "JINDALSTEL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:13.587354+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "JIOFIN.NS": {
+        "ticker": "JIOFIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:13.930627+00:00",
+        "first_date": "2023-08-21",
+        "last_date": "2026-10-09",
+        "rows": 779,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "JUBLFOOD.NS": {
+        "ticker": "JUBLFOOD.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:14.131486+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KALYANKJIL.NS": {
+        "ticker": "KALYANKJIL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:14.566128+00:00",
+        "first_date": "2021-03-26",
+        "last_date": "2026-10-09",
+        "rows": 1373,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KARURVYSYA.NS": {
+        "ticker": "KARURVYSYA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:15.142676+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KEI.NS": {
+        "ticker": "KEI.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:15.353160+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KEC.NS": {
+        "ticker": "KEC.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:17.951839+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KPITTECH.NS": {
+        "ticker": "KPITTECH.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:18.151828+00:00",
+        "first_date": "2019-04-22",
+        "last_date": "2026-10-09",
+        "rows": 1852,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "KNRCON.NS": {
+        "ticker": "KNRCON.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:18.880317+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "LALPATHLAB.NS": {
+        "ticker": "LALPATHLAB.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:19.836823+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "LICHSGFIN.NS": {
+        "ticker": "LICHSGFIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:20.134594+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "LICI.NS": {
+        "ticker": "LICI.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:20.299909+00:00",
+        "first_date": "2022-05-17",
+        "last_date": "2026-10-09",
+        "rows": 1093,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "LTIM.NS": {
+        "ticker": "LTIM.NS",
+        "source": "merge-csv.csv",
+        "download_timestamp": "2026-10-09T17:09:21.185752+00:00",
+        "first_date": "2024-11-05",
+        "last_date": "2026-10-02",
+        "rows": 499,
+        "topup_rows_added": 0,
+        "auto_adjusted": true
+    },
+    "LTTS.NS": {
+        "ticker": "LTTS.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:23.122946+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "LUPIN.NS": {
+        "ticker": "LUPIN.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:23.376753+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "MFSL.NS": {
+        "ticker": "MFSL.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:23.954329+00:00",
+        "first_date": "2016-10-03",
+        "last_date": "2026-10-09",
+        "rows": 2480,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "MANAPPURAM.NS": {
+        "ticker": "MANAPPURAM.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:24.253148+00:00",
+        "first_date": "2021-10-04",
+        "last_date": "2026-10-09",
+        "rows": 1245,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "MAPMYINDIA.NS": {
+        "ticker": "MAPMYINDIA.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:24.630724+00:00",
+        "first_date": "2021-12-21",
+        "last_date": "2026-10-09",
+        "rows": 1191,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    },
+    "MAXHEALTH.NS": {
+        "ticker": "MAXHEALTH.NS",
+        "source": "merge-csv.csv + yfinance top-up",
+        "download_timestamp": "2026-10-09T17:09:25.310827+00:00",
+        "first_date": "2020-08-21",
+        "last_date": "2026-10-09",
+        "rows": 1523,
+        "topup_rows_added": 5,
+        "auto_adjusted": true
+    }
+}
