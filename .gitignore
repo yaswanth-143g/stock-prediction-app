@@ -36,6 +36,9 @@ merge-csv.csv
 logs/*
 !logs/.gitkeep
 *.log
+collector_log.txt
+*.lock
+news_collector.lock
 
 # IDE & OS Caches
 .vscode/
