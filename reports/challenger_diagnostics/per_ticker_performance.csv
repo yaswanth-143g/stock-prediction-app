@@ -1,0 +1,2 @@
+ticker,test_sample_count,Day_1_accuracy_pct,Day_1_mae,Day_1_rmse,UP_pred_pct,DOWN_pred_pct,OOS_sharpe
+RELIANCE.NS,425,47.76,0.010152,0.013445,11.29,88.71,-0.84

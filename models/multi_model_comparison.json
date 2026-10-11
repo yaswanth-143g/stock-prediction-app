@@ -1,0 +1,37 @@
+{
+    "trained_at": "2026-10-07 11:04:48",
+    "total_samples": 22631,
+    "total_tickers": 10,
+    "model_benchmarks": {
+        "Linear Regression": {
+            "R2_%": -0.11,
+            "MAE": 0.011,
+            "RMSE": 0.0158,
+            "Directional_Accuracy_%": 50.01
+        },
+        "Random Forest": {
+            "R2_%": -10.89,
+            "MAE": 0.0117,
+            "RMSE": 0.0166,
+            "Directional_Accuracy_%": 49.66
+        },
+        "XGBoost": {
+            "R2_%": -3.18,
+            "MAE": 0.0111,
+            "RMSE": 0.016,
+            "Directional_Accuracy_%": 49.58
+        },
+        "LightGBM": {
+            "R2_%": -0.5,
+            "MAE": 0.011,
+            "RMSE": 0.0158,
+            "Directional_Accuracy_%": 49.48
+        },
+        "LSTM Neural Network": {
+            "R2_%": -1.31,
+            "MAE": 0.011,
+            "RMSE": 0.0159,
+            "Directional_Accuracy_%": 49.61
+        }
+    }
+}

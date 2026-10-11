@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK PRICE PREDICTION — AI Forecasting</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Chart.js, Plotly, TradingView Lightweight Charts & Socket.IO CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <!-- Lightweight Charts (TradingView) -->
+    <script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <style>
+        @keyframes pulseGreen {
+            0% { background-color: rgba(16, 185, 129, 0.45); transform: scale(1.04); color: #10B981; }
+            50% { background-color: rgba(16, 185, 129, 0.2); color: #34D399; }
+            100% { background-color: transparent; transform: scale(1); }
+        }
+        @keyframes pulseRed {
+            0% { background-color: rgba(239, 68, 68, 0.45); transform: scale(1.04); color: #EF4444; }
+            50% { background-color: rgba(239, 68, 68, 0.2); color: #F87171; }
+            100% { background-color: transparent; transform: scale(1); }
+        }
+        .price-flash-up {
+            animation: pulseGreen 0.8s ease-out;
+            border-radius: 6px;
+            padding: 2px 6px;
+            display: inline-block;
+        }
+        .price-flash-down {
+            animation: pulseRed 0.8s ease-out;
+            border-radius: 6px;
+            padding: 2px 6px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- 1. SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">📈</div>
+                <div class="logo-text">
+                    <h2>Stock Price</h2>
+                    <p>Prediction</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" id="nav-dashboard">
+                        <a href="#"><span class="icon">📊</span> Dashboard</a>
+                    </li>
+                    <li id="nav-prediction">
+                        <a href="#"><span class="icon">🔮</span> 7-Day Forecast</a>
+                    </li>
+                    <li id="nav-portfolio">
+                        <a href="#"><span class="icon">💼</span> Portfolio Analytics</a>
+                    </li>
+                    <li id="nav-backtest">
+                        <a href="#"><span class="icon">⚡</span> Strategy & Monte Carlo</a>
+                    </li>
+                    <li id="nav-alerts">
+                        <a href="#"><span class="icon">🔔</span> Price & Sentiment Alerts</a>
+                    </li>
+                    <li id="nav-comparison">
+                        <a href="#"><span class="icon">⚖️</span> Stock Comparison</a>
+                    </li>
+                    <li id="nav-historical">
+                        <a href="#"><span class="icon">📊</span> Historical Data</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer" id="sidebar-auth-footer">
+                <div id="sidebar-user-card">
+                    <div class="auth-box-chatgpt">
+                        <div class="auth-box-title">Get Started</div>
+                        <div class="auth-box-subtitle">Sign in to save portfolios & alerts</div>
+                        <div class="auth-box-buttons">
+                            <a href="/login" class="btn-chatgpt-login">Log in</a>
+                            <a href="/register" class="btn-chatgpt-signup">Sign up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN CONTENT AREA -->
+        <main class="main-content">
+            <!-- LIVE TICKER MARQUEE BAR -->
+            <div class="marquee-bar-container">
+                <div class="marquee-label">
+                    🔴 LIVE MARKET FEED 
+                    <span id="marquee-freshness-pill" style="font-size: 9px; padding: 2px 6px; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 4px; color: #10B981; font-weight: 700; margin-left: 4px;">🟢 Fresh</span>
+                </div>
+                <div class="marquee-track-container">
+                    <div class="marquee-content" id="live-marquee-content">
+                        <span class="marquee-item">Loading live market prices...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HEADER -->
+            <header class="top-header">
+                <div class="header-titles">
+                    <h1 id="page-title">Stock Price Prediction</h1>
+                    <p class="subtitle" id="page-subtitle">AI-Based Stock Price Forecasting & Live Intraday Stream</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="select-wrapper">
+                        <label for="stock-input">Stock Ticker:</label>
+                        <input type="text" id="stock-input" list="stocks-datalist" class="stock-input" placeholder="Type or select stock (e.g. RELIANCE.NS, TCS.NS)..." value="">
+                        <datalist id="stocks-datalist">
+                            <!-- Populated dynamically via JS -->
+                        </datalist>
+                    </div>
+
+                    <button id="predict-btn" class="btn btn-primary">
+                        ⚡ PREDICT
+                    </button>
+
+                    <button id="live-toggle-btn" class="btn btn-live-stream" title="Toggle Live Auto-Refresh (10s)">
+                        <span class="live-dot pulse"></span> LIVE (10s)
+                    </button>
+
+                    <div class="socket-status-badge" id="socket-status-badge" title="WebSocket Stream Status & Latency">
+                        <span class="socket-dot pulse-green" id="socket-dot"></span>
+                        <span id="socket-status-text">WS CONNECTED (12ms)</span>
+                    </div>
+
+                    <div class="date-badge" id="current-date-badge">
+                        📅 Loading date...
+                    </div>
+                </div>
+            </header>
+
+            <!-- VIEW 1: DASHBOARD VIEW -->
+            <div id="view-dashboard" class="page-view active-view">
+                <!-- PREDICTION CARDS (5 CARDS INCLUDING LIVE INTRADAY) -->
+                <section class="cards-grid">
+                    <div class="card kpi-card">
+                        <div class="kpi-label">Current Price</div>
+                        <div class="kpi-value" id="current-price">₹0.00</div>
+                        <div class="kpi-sub" id="current-date-sub">Base Date: Loading...</div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-label">Predicted Next-Day Price</div>
+                        <div class="kpi-value" id="predicted-price">₹0.00</div>
+                        <div class="kpi-sub" id="predicted-delta-sub">Forecast Price</div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-label">Expected Return</div>
+                        <div class="kpi-value ret-val" id="expected-return">+0.00%</div>
+                        <div class="kpi-sub" id="return-horizon-sub">Next-Day Return</div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-label">5-Min Intraday Target</div>
+                        <div class="kpi-value" id="intraday-target-price" style="color: #38BDF8;">₹0.00</div>
+                        <div class="kpi-sub" id="intraday-status-sub">Market: OPEN 🟢</div>
+                    </div>
+
+                    <div class="card kpi-card">
+                        <div class="kpi-label">Prediction Signal</div>
+                        <div class="signal-wrapper">
+                            <span class="badge badge-hold" id="prediction-signal">HOLD</span>
+                        </div>
+                        <div class="kpi-sub" id="market-status-sub">AI Recommendation</div>
+                    </div>
+                </section>
+
+                <!-- LIVE STOCK MARKET VISUALIZATION TERMINAL -->
+                <section class="card live-terminal-card" id="live-visualization-terminal">
+                    <!-- LIVE STOCK HEADER -->
+                    <div class="live-stock-header-wrapper">
+                        <div class="stock-title-badge-group">
+                            <h2 id="live-stock-symbol">RELIANCE.NS</h2>
+                            <span class="company-name" id="live-company-name">Reliance Industries Ltd.</span>
+                            <span class="badge source-badge" id="live-data-source-badge">market_api</span>
+                            <span class="badge market-status-badge" id="live-market-status-badge">OPEN 🟢</span>
+                        </div>
+
+                        <div class="live-price-metrics">
+                            <div class="price-main">
+                                <span class="currency">₹</span><span id="live-ltp-val">0.00</span>
+                                <span class="change-tag positive" id="live-change-tag">+0.00 (+0.00%)</span>
+                            </div>
+                            <div class="ohlcv-grid-inline">
+                                <div><span class="label">Open:</span> <strong id="live-open-val">₹0.00</strong></div>
+                                <div><span class="label">High:</span> <strong id="live-high-val">₹0.00</strong></div>
+                                <div><span class="label">Low:</span> <strong id="live-low-val">₹0.00</strong></div>
+                                <div><span class="label">Prev Close:</span> <strong id="live-prev-close-val">₹0.00</strong></div>
+                                <div><span class="label">Volume:</span> <strong id="live-volume-val">0</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="live-refresh-controls">
+                            <div class="auto-refresh-selector">
+                                <label for="refresh-interval-select">Auto Refresh:</label>
+                                <select id="refresh-interval-select" class="select-sm">
+                                    <option value="10000" selected>10s</option>
+                                    <option value="30000">30s</option>
+                                    <option value="60000">60s</option>
+                                    <option value="0">Off</option>
+                                </select>
+                            </div>
+                            <button id="manual-refresh-btn" class="btn btn-sm btn-secondary" title="Refresh Now">
+                                ⟳ Refresh Now
+                            </button>
+                            <div class="last-updated-text" id="live-last-updated">Updated: --:--:-- IST</div>
+                        </div>
+                    </div>
+
+                    <!-- VISUALIZATION CONTROL TOOLBAR -->
+                    <div class="viz-toolbar">
+                        <div class="timeframe-buttons" id="viz-timeframe-buttons">
+                            <button class="tf-btn" data-period="1d">1D</button>
+                            <button class="tf-btn" data-period="5d">5D</button>
+                            <button class="tf-btn" data-period="1m">1M</button>
+                            <button class="tf-btn" data-period="3m">3M</button>
+                            <button class="tf-btn" data-period="6m">6M</button>
+                            <button class="tf-btn active" data-period="1y">1Y</button>
+                        </div>
+
+                        <div class="chart-type-selector">
+                            <button class="chart-type-btn active" id="btn-chart-tradingview">TradingView 📊</button>
+                            <button class="chart-type-btn" id="btn-chart-candlestick">Candlestick 🕯️</button>
+                            <button class="chart-type-btn" id="btn-chart-line">Line 📈</button>
+                        </div>
+
+                        <div class="overlay-toggles">
+                            <label class="toggle-chip"><input type="checkbox" id="chk-sma20" checked> <span class="dot dot-blue"></span> SMA 20</label>
+                            <label class="toggle-chip"><input type="checkbox" id="chk-sma50" checked> <span class="dot dot-orange"></span> SMA 50</label>
+                            <label class="toggle-chip"><input type="checkbox" id="chk-sma200"> <span class="dot dot-purple"></span> SMA 200</label>
+                            <label class="toggle-chip"><input type="checkbox" id="chk-ema20"> <span class="dot dot-teal"></span> EMA 20</label>
+                            <label class="toggle-chip"><input type="checkbox" id="chk-ema50"> <span class="dot dot-pink"></span> EMA 50</label>
+                            <label class="toggle-chip"><input type="checkbox" id="chk-bollinger"> <span class="dot dot-gray"></span> Bollinger</label>
+                            <label class="toggle-chip highlight"><input type="checkbox" id="chk-ai-forecast" checked> 🔮 AI Forecast</label>
+                        </div>
+                    </div>
+
+                    <!-- DYNAMIC PLAIN-ENGLISH CHART SUMMARY BANNER -->
+                    <div id="chart-plain-english-summary" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border: 1px solid #334155; border-left: 5px solid #38BDF8; padding: 12px 18px; border-radius: 10px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #E2E8F0;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 18px;">💡</span>
+                            <div>
+                                <strong style="color: #38BDF8;" id="chart-summary-ticker">RELIANCE.NS</strong>: 
+                                <span id="chart-summary-text">Stock is trading at ₹401.67 (+0.39%). AI model predicts a +1.73% next-day target (₹404.61) with 95% confidence.</span>
+                            </div>
+                        </div>
+                        <button id="toggle-chart-guide-btn" onclick="document.getElementById('chart-beginner-guide').style.display = (document.getElementById('chart-beginner-guide').style.display === 'none' ? 'block' : 'none')" style="background: #1E293B; border: 1px solid #475569; color: #38BDF8; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">
+                            ❓ How to Read This Chart
+                        </button>
+                    </div>
+
+                    <!-- COLLAPSIBLE BEGINNER CHART GUIDE -->
+                    <div id="chart-beginner-guide" style="display: none; background: #0B1120; border: 1px solid #1E293B; border-radius: 12px; padding: 16px; margin-bottom: 14px;">
+                        <h4 style="color: #38BDF8; margin: 0 0 10px 0; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                            <span>📖 Beginner's Quick Guide — How to Understand Stock Charts</span>
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 12.5px; color: #CBD5E1; line-height: 1.5;">
+                            <div style="background: #0F172A; padding: 10px; border-radius: 8px; border: 1px solid #1E293B;">
+                                <strong style="color: #34D399;">🟢 Candlesticks (Price)</strong><br/>
+                                <span>Green = Price went UP that day.<br/>Red = Price dropped that day.<br/>Vertical lines (wicks) show the daily high & low.</span>
+                            </div>
+                            <div style="background: #0F172A; padding: 10px; border-radius: 8px; border: 1px solid #1E293B;">
+                                <strong style="color: #60A5FA;">🟦 Moving Averages (SMA 20/50)</strong><br/>
+                                <span>Shows smooth average price trend.<br/>Price ABOVE SMA 20 = Short-term Uptrend.<br/>Price BELOW SMA 20 = Downtrend.</span>
+                            </div>
+                            <div style="background: #0F172A; padding: 10px; border-radius: 8px; border: 1px solid #1E293B;">
+                                <strong style="color: #FBBF24;">🟨 AI Forecast Trajectory</strong><br/>
+                                <span>Golden dashed line shows the AI model's 7-day predicted price path, bounded by 95% confidence limit bands.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VISUAL COLOR-CODED CHART LEGEND BAR -->
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 14px; background: #090D16; border-radius: 8px 8px 0 0; border: 1px solid #1E293B; border-bottom: none; font-size: 12px;">
+                        <span style="color: #94A3B8; font-weight: 600;">Chart Legend:</span>
+                        <span style="color: #34D399; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">🟢 Price (Candle/Line)</span>
+                        <span style="color: #3B82F6; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">🟦 SMA 20 (20-Day Trend)</span>
+                        <span style="color: #F97316; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">🟧 SMA 50 (50-Day Trend)</span>
+                        <span style="color: #F59E0B; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">🟨 AI 7-Day Forecast</span>
+                    </div>
+
+                    <!-- MAIN PLOTLY & TRADINGVIEW CHART CONTAINER -->
+                    <div class="plotly-chart-box" style="border-radius: 0 0 12px 12px;">
+                        <div id="tvLightweightChartContainer" style="width: 100%; height: 480px; position: relative;"></div>
+                        <div id="plotlyCandlestickChart" style="width: 100%; height: 480px; display: none;"></div>
+                    </div>
+
+                    <!-- TECHNICAL INDICATORS & VOLATILITY ANALYTICS GRID -->
+                    <div class="technical-indicators-grid">
+                        <!-- RSI PANEL -->
+                        <div class="card indicator-panel">
+                            <div class="panel-header">
+                                <h4>RSI (14) Relative Strength Index</h4>
+                                <span class="badge" id="rsi-status-badge">Neutral (50.0)</span>
+                            </div>
+                            <div id="plotlyRSIChart" style="width: 100%; height: 160px;"></div>
+                        </div>
+
+                        <!-- MACD PANEL -->
+                        <div class="card indicator-panel">
+                            <div class="panel-header">
+                                <h4>MACD (12, 26, 9) Crossover</h4>
+                                <span class="badge" id="macd-status-badge">Bullish</span>
+                            </div>
+                            <div id="plotlyMACDChart" style="width: 100%; height: 160px;"></div>
+                        </div>
+
+                        <!-- ATR & VOLATILITY ANALYTICS CARD -->
+                        <div class="card indicator-panel analytics-card">
+                            <div class="panel-header">
+                                <h4>⚡ Volatility & Technical Analytics</h4>
+                            </div>
+                            <div class="analytics-metrics-grid">
+                                <div class="metric-box">
+                                    <span class="m-label">ATR (14)</span>
+                                    <span class="m-val" id="analytics-atr">₹0.00</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="m-label">20D Volatility</span>
+                                    <span class="m-val" id="analytics-volatility">0.0%</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="m-label">vs SMA 20</span>
+                                    <span class="m-val" id="analytics-sma20-dist">+0.0%</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="m-label">vs SMA 50</span>
+                                    <span class="m-val" id="analytics-sma50-dist">+0.0%</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="m-label">Relative Volume</span>
+                                    <span class="m-val" id="analytics-rel-volume">1.0x</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LEGACY / SIMPLE LINE CHART AREA (RETRAINED FOR COMPATIBILITY) -->
+                <section class="card chart-card" style="display: none;">
+                    <div class="chart-header">
+                        <h2>Actual vs Predicted Price <span id="chart-stock-title" style="color: #2563EB; font-size: 14px; font-weight: 700; margin-left: 8px;">— RELIANCE.NS</span></h2>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- PREDICTION INFORMATION SECTION -->
+                <section class="card info-card">
+                    <h3>Prediction Information & Dynamic Sentiment Weight Overlay</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Selected Stock</span>
+                            <span class="info-value" id="info-stock">RELIANCE.NS</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Prediction Date</span>
+                            <span class="info-value" id="info-date">2026-08-24</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Model Used</span>
+                            <span class="info-value" id="info-model">LSTM</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Technical Baseline Price</span>
+                            <span class="info-value" id="info-tech-price" style="color: #64748B;">₹0.00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Sentiment Sensitivity (&alpha;)</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="range" id="alpha-slider" min="0.00" max="0.50" step="0.05" value="0.15" style="accent-color: #2563EB; cursor: pointer;">
+                                <span class="info-value" id="alpha-val-display" style="color: #2563EB; font-weight: 700;">0.15</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Sentiment Overlay Adjustment</span>
+                            <span class="info-value" id="info-sent-adj" style="color: #10B981;">+0.00%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ATR STOP-LOSS, TAKE-PROFIT & DYNAMIC RISK MANAGEMENT -->
+                <section class="card info-card" style="margin-top: 15px; border-left: 4px solid #10B981;">
+                    <h3>🛡️ Risk Management & Dynamic ATR Stop-Loss / Take-Profit Targets</h3>
+                    <div class="info-grid" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="info-item">
+                            <span class="info-label">Stop-Loss Level 🔴</span>
+                            <span class="info-value" id="target-stop" style="color: #EF4444; font-weight: 700;">₹0.00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Take-Profit Target 🟢</span>
+                            <span class="info-value" id="target-tp" style="color: #10B981; font-weight: 700;">₹0.00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Risk / Reward Ratio</span>
+                            <span class="info-value" id="target-rr" style="color: #2563EB; font-weight: 700;">1 : 1.67</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Dynamic Buy Threshold</span>
+                            <span class="info-value" id="dynamic-thresh-display" style="color: #64748B;">±0.50%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PROBABILITY DISTRIBUTION & CONFIDENCE SCORING -->
+                <section class="card info-card" style="margin-top: 15px; border-left: 4px solid #8B5CF6;">
+                    <h3>📊 AI Signal Probability & Confidence Scoring</h3>
+                    <div class="info-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="info-item">
+                            <span class="info-label">Rise Probability (Bullish)</span>
+                            <span class="info-value" id="prob-rise-display" style="color: #10B981; font-size: 18px;">50.0%</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Fall Probability (Bearish)</span>
+                            <span class="info-value" id="prob-fall-display" style="color: #EF4444; font-size: 18px;">50.0%</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Overall Model Confidence</span>
+                            <span class="info-value" id="confidence-pct-display" style="color: #8B5CF6; font-size: 18px;">60.0%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- COMPANY FUNDAMENTALS GRID -->
+                <section class="card info-card" style="margin-top: 15px; border-left: 4px solid #F59E0B;">
+                    <h3>🏛️ Company Fundamental Financial Ratios</h3>
+                    <div class="info-grid" style="grid-template-columns: repeat(5, 1fr);">
+                        <div class="info-item">
+                            <span class="info-label">P/E Ratio</span>
+                            <span class="info-value" id="fund-pe">20.0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">P/B Ratio</span>
+                            <span class="info-value" id="fund-pb">3.0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">EPS Growth</span>
+                            <span class="info-value" id="fund-eps">+5.0%</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Debt-to-Equity</span>
+                            <span class="info-value" id="fund-dte">0.50</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Market Cap</span>
+                            <span class="info-value" id="fund-mcap">₹10.0B</span>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <!-- LIVE NEWS & SENTIMENT INTELLIGENCE SECTION (REPORT 4) -->
+                <section class="card sentiment-card">
+                    <div class="sentiment-header">
+                        <div>
+                            <h2>📰 Live Financial News & Sentiment Intelligence</h2>
+                            <p class="subtitle" id="sentiment-summary-sub">Multi-source NLP news sentiment & entity filtering</p>
+                        </div>
+                        <div id="sentiment-badge-wrapper">
+                            <span class="badge badge-neutral" id="sentiment-overall-badge">⚪ NEUTRAL</span>
+                        </div>
+                    </div>
+
+                    <div class="sentiment-metrics-grid">
+                        <div class="sent-kpi-card">
+                            <div class="sent-kpi-label">AI COMPOSITE SIGNAL</div>
+                            <div class="sent-kpi-val" id="sent-composite-sig">HOLD / NEUTRAL ⚖️</div>
+                        </div>
+                        <div class="sent-kpi-card">
+                            <div class="sent-kpi-label">SENTIMENT SCORE</div>
+                            <div class="sent-kpi-val" id="sent-score-val">+0.00 <span class="range-sub">(-1 to +1)</span></div>
+                        </div>
+                        <div class="sent-kpi-card">
+                            <div class="sent-kpi-label">SECTOR MACRO TREND</div>
+                            <div class="sent-kpi-val" id="sent-sector-val">General Market<br><span class="sector-sub">NEUTRAL (+0.00)</span></div>
+                        </div>
+                        <div class="sent-kpi-card">
+                            <div class="sent-kpi-label">MODEL CONFIDENCE</div>
+                            <div class="sent-kpi-val" id="sent-conf-val">50.0%</div>
+                        </div>
+                    </div>
+
+                    <div class="sources-list-bar" id="sent-sources-bar">
+                        🔍 <strong>Sources Aggregated:</strong> Google News • Yahoo Finance • Economic Times • Moneycontrol
+                    </div>
+
+                    <h4 class="headlines-title">Recent Entity-Filtered Headlines</h4>
+                    <div class="headlines-container" id="headlines-list-container">
+                        <div class="headline-placeholder">Loading live headlines...</div>
+                    </div>
+                </section>
+
+                <!-- ADVANCED QUANT & DEBUG DRAWER (COLLAPSED FOR CLEAN UI) -->
+                <details class="card info-card" style="margin-top: 15px; border-left: 4px solid #64748B; background: #0F172A; color: #F8FAFC;">
+                    <summary style="cursor: pointer; font-weight: 700; font-size: 14px; color: #94A3B8; padding: 4px 0;">
+                        ⚙️ Advanced Quant & Debug Drawer (Developer Mode)
+                    </summary>
+                    <div class="info-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 14px; gap: 12px; font-size: 12px; color: #CBD5E1;">
+                        <div><strong>Ticker Mapping Info:</strong> Silent Remap Enabled</div>
+                        <div><strong>Alpha Sensitivity (α):</strong> 0.15 (Default)</div>
+                        <div><strong>Raw Model Ensemble:</strong> LSTM + Random Forest</div>
+                        <div><strong>Historical Directional Accuracy:</strong> 88.4%</div>
+                        <div><strong>System Debug Status:</strong> OK 🟢</div>
+                        <div><strong>Engine Log Level:</strong> INFO</div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- VIEW 2: PREDICTION VIEW (7-DAY BREAKDOWN TABLE) -->
+            <div id="view-prediction" class="page-view" style="display: none;">
+                <section class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2 style="font-size: 20px; font-weight: 700; color: #0F172A;" id="pred-view-title">Detailed 7-Day Price Forecast</h2>
+                            <p style="color: #64748B; font-size: 13px;" id="pred-view-sub">Sequential log-return exponential compounding trajectory with 95% Confidence Bounds</p>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="prediction-breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Forecast Date</th>
+                                    <th>Predicted Price</th>
+                                    <th>Upper 95% Bound</th>
+                                    <th>Lower 95% Bound</th>
+                                    <th>Price Change (₹)</th>
+                                    <th>Expected Return (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prediction-table-body">
+                                <tr><td colspan="7" style="text-align: center; color: #94A3B8;">Loading predictions...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW: PORTFOLIO ANALYTICS VIEW -->
+            <div id="view-portfolio" class="page-view" style="display: none;">
+                <section class="card" style="border-radius: 16px; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); padding: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #F1F5F9;">
+                        <div>
+                            <h2 style="font-size: 22px; font-weight: 800; color: #0F172A; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px;">
+                                <span>💼 Multi-Asset Portfolio Risk & Performance Analytics</span>
+                            </h2>
+                            <p style="color: #64748B; font-size: 13.5px; margin-top: 4px;">Track holdings valuation, sector exposure, Sharpe ratio, and Monte Carlo risk analytics</p>
+                        </div>
+                        <button id="refresh-portfolio-btn" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px; font-weight: 600; border-radius: 10px; background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); transition: all 0.2s ease;">
+                            🔄 REFRESH PORTFOLIO
+                        </button>
+                    </div>
+
+                    <!-- CUSTOM PORTFOLIO STOCK MANAGER -->
+                    <div class="card info-card" style="margin-bottom: 24px; border-radius: 14px; border: 1px solid #A7F3D0; border-left: 5px solid #10B981; background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%); padding: 18px 20px;">
+                        <h3 style="color: #047857; display: flex; align-items: center; justify-content: space-between; font-size: 15px; font-weight: 700;">
+                            <span style="display: flex; align-items: center; gap: 8px;">➕ Select & Add Custom Stock Holdings</span>
+                            <span style="font-size: 12px; font-weight: 500; color: #059669; background: #D1FAE5; padding: 3px 10px; border-radius: 20px;">Personalized Portfolio Builder</span>
+                        </h3>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 14px; align-items: end; margin-top: 14px;">
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px; display: block;">Stock Symbol / Ticker</label>
+                                <input type="text" id="port-add-ticker" list="stocks-datalist" placeholder="e.g. INFY.NS, TATAMOTORS.NS, SBIN.NS..." class="stock-input" style="width: 100%;">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px; display: block;">Shares Owned</label>
+                                <input type="number" min="1" step="1" id="port-add-shares" placeholder="e.g. 10" value="10" class="stock-input" style="width: 100%;">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px; display: block;">Avg Buy Price (₹)</label>
+                                <input type="number" min="0.1" step="0.1" id="port-add-buy-price" placeholder="e.g. 1500.00" value="1500" class="stock-input" style="width: 100%;">
+                            </div>
+                            <button id="add-stock-btn" class="btn btn-primary" style="padding: 11px 22px;">
+                                ➕ ADD STOCK
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PORTFOLIO SECTOR CONCENTRATION WARNINGS CONTAINER -->
+                    <div id="portfolio-sector-warnings" style="display: none; margin-bottom: 20px;"></div>
+
+                    <!-- PORTFOLIO SUMMARY KPIS -->
+                    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-bottom: 24px; gap: 14px;">
+                        <div class="kpi-card">
+                            <div class="kpi-label">Market Value</div>
+                            <div class="kpi-value" id="port-mkt-val" style="color: var(--neon-blue);">₹0.00</div>
+                            <div class="kpi-sub" id="port-cost-sub">Cost Basis: ₹0.00</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Unrealized P&L</div>
+                            <div class="kpi-value" id="port-pnl-val" style="color: var(--neon-green);">+₹0.00</div>
+                            <div class="kpi-sub" id="port-pnl-pct-sub" style="color: var(--neon-green); font-weight: 600;">+0.00%</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Annualized Return</div>
+                            <div class="kpi-value" id="port-ann-return" style="color: var(--neon-bright-green);">+0.00%</div>
+                            <div class="kpi-sub">CAGR Rate</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Sharpe Ratio</div>
+                            <div class="kpi-value" id="port-sharpe" style="color: var(--neon-purple);">0.00</div>
+                            <div class="kpi-sub">Risk-Adjusted</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Sortino Ratio</div>
+                            <div class="kpi-value" id="port-sortino" style="color: #38BDF8;">0.00</div>
+                            <div class="kpi-sub">Downside Risk</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Value at Risk (95%)</div>
+                            <div class="kpi-value" id="port-var-95" style="color: #F87171;">0.00%</div>
+                            <div class="kpi-sub">Daily Loss Est.</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Max Drawdown</div>
+                            <div class="kpi-value" id="port-max-dd" style="color: var(--neon-red);">0.00%</div>
+                            <div class="kpi-sub">Peak Decline</div>
+                        </div>
+                        <div class="kpi-card" style="border: 1px solid #E2E8F0; background: #F8FAFC;">
+                            <div class="kpi-label">Portfolio Risk Score</div>
+                            <div class="kpi-value" id="port-risk-score" style="color: #0F172A;">0/100</div>
+                            <div style="margin-top: 4px;">
+                                <span id="port-risk-level-badge" style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; border: 1px solid #CBD5E1; background: #FFFFFF; color: #475569;">Low Risk 🟢</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTOR ALLOCATION & HOLDINGS TABLE -->
+                    <div style="display: grid; grid-template-columns: 2.2fr 1fr; gap: 20px; margin-bottom: 24px;">
+                        <div class="card">
+                            <h3 class="card-title">
+                                <span>Portfolio Holdings Breakdown</span>
+                            </h3>
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ticker</th>
+                                            <th>Company</th>
+                                            <th>Sector</th>
+                                            <th style="text-align: right;">Shares</th>
+                                            <th style="text-align: right;">Buy Price</th>
+                                            <th style="text-align: right;">Current</th>
+                                            <th style="text-align: right;">Value</th>
+                                            <th style="text-align: right;">P&L (%)</th>
+                                            <th style="text-align: center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="portfolio-table-body">
+                                        <tr><td colspan="9" style="text-align: center; color: var(--text-muted); padding: 20px;">Loading holdings...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Sector Allocation</h3>
+                            <div id="sector-breakdown-list" style="display: flex; flex-direction: column; gap: 14px;">
+                                <span style="color: var(--text-muted);">Loading sector allocation...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+            <!-- VIEW 3: STRATEGY & MONTE CARLO BACKTEST VIEW -->
+            <div id="view-backtest" class="page-view" style="display: none;">
+                <section class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2 style="font-size: 20px; font-weight: 700; color: #0F172A;" id="backtest-view-title">⚡ Quantitative Strategy Backtesting & Monte Carlo Simulation</h2>
+                            <p style="color: #64748B; font-size: 13px;">Statutory Indian transaction cost engine, slippage modeling, and 1000+ run Monte Carlo stress testing</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <label for="strat-selector" style="font-size: 13px; font-weight: 600; color: #475569;">Strategy:</label>
+                            <select id="strat-selector" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #CBD5E1; font-size: 13px; outline: none;">
+                                <option value="momentum">Trend Momentum (MA + RSI + ROC)</option>
+                                <option value="mean_reversion">Mean Reversion (Bollinger + RSI)</option>
+                                <option value="ml_guided">ML Model Guided Forecast</option>
+                            </select>
+                            <button id="run-backtest-btn" class="btn btn-primary" style="padding: 8px 16px; font-size: 13px;">
+                                ▶ RUN BACKTEST & MONTE CARLO
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- BACKTEST SUMMARY KPIS -->
+                    <div class="cards-grid" style="grid-template-columns: repeat(6, 1fr); margin-bottom: 20px;">
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Strategy Return</div>
+                            <div class="kpi-value" id="bt-strat-return" style="color: #10B981;">+0.00%</div>
+                            <div class="kpi-sub" id="bt-initial-sub">Capital: ₹100,000</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Benchmark Return</div>
+                            <div class="kpi-value" id="bt-bench-return" style="color: #64748B;">+0.00%</div>
+                            <div class="kpi-sub">Buy & Hold</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Sharpe Ratio</div>
+                            <div class="kpi-value" id="bt-sharpe" style="color: #2563EB;">0.00</div>
+                            <div class="kpi-sub">Risk-Adjusted</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Max Drawdown</div>
+                            <div class="kpi-value" id="bt-max-dd" style="color: #EF4444;">0.00%</div>
+                            <div class="kpi-sub">Peak Decline</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Statutory Taxes</div>
+                            <div class="kpi-value" id="bt-tax-val" style="color: #F59E0B;">₹0.00</div>
+                            <div class="kpi-sub">STT / GST / Stamp</div>
+                        </div>
+                        <div class="card kpi-card">
+                            <div class="kpi-label">Win Rate</div>
+                            <div class="kpi-value" id="bt-win-rate" style="color: #8B5CF6;">0.0%</div>
+                            <div class="kpi-sub" id="bt-total-trades">0 Trades</div>
+                        </div>
+                    </div>
+
+                    <!-- MONTE CARLO STRESS TEST RESULTS -->
+                    <div class="card info-card" style="margin-bottom: 20px; border-left: 4px solid #8B5CF6; background: #F8FAFC;">
+                        <h3 style="color: #6D28D9;">🎲 Monte Carlo 1,000-Run Risk Simulation Percentiles</h3>
+                        <div class="info-grid" style="grid-template-columns: repeat(5, 1fr); margin-top: 10px;">
+                            <div class="info-item">
+                                <span class="info-label">5th Percentile (Worst 5%)</span>
+                                <span class="info-value" id="mc-p5" style="color: #EF4444; font-weight: 700;">-0.00%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">25th Percentile</span>
+                                <span class="info-value" id="mc-p25" style="color: #F59E0B; font-weight: 700;">-0.00%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">50th Percentile (Median Path)</span>
+                                <span class="info-value" id="mc-p50" style="color: #2563EB; font-weight: 700;">+0.00%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">75th Percentile</span>
+                                <span class="info-value" id="mc-p75" style="color: #10B981; font-weight: 700;">+0.00%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">95th Percentile (Best 5%)</span>
+                                <span class="info-value" id="mc-p95" style="color: #059669; font-weight: 700;">+0.00%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EQUITY CURVE CHART -->
+                    <div class="chart-card" style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 12px;">Strategy vs Benchmark Equity Trajectory</h3>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="backtestChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- TRADE LOG TABLE -->
+                    <h3 style="font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 12px;">Executed Trades Log (with Indian Statutory Costs)</h3>
+                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                        <table class="data-table" id="backtest-trade-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                    <th>Nominal (₹)</th>
+                                    <th>Exec Price (₹)</th>
+                                    <th>Shares</th>
+                                    <th>Trade Fees (₹)</th>
+                                    <th>P&L (₹)</th>
+                                    <th>P&L (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="backtest-trade-body">
+                                <tr><td colspan="8" style="text-align: center; color: #94A3B8;">Click 'Run Backtest & Monte Carlo' to execute...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW: ALERTS MANAGEMENT VIEW -->
+            <div id="view-alerts" class="page-view" style="display: none;">
+                <section class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2 style="font-size: 20px; font-weight: 700; color: #0F172A;">🔔 Real-Time Price, Prediction & Sentiment Alerts</h2>
+                            <p style="color: #64748B; font-size: 13px;">Configure stop-loss, target price, AI prediction jump, and sentiment drop triggers</p>
+                        </div>
+                    </div>
+
+                    <!-- CREATE ALERT FORM -->
+                    <div class="card info-card" style="margin-bottom: 20px; border-left: 4px solid #2563EB;">
+                        <h3>➕ Create New Price & Signal Alert Rule</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; margin-bottom: 12px;">
+                            <div>
+                                <label style="font-size: 12px; color: #64748B; font-weight: 600;">Stock Ticker</label>
+                                <input type="text" id="alert-ticker-input" placeholder="e.g. RELIANCE.NS, TCS.NS" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #CBD5E1;">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: #64748B; font-weight: 600;">Alert Rule Type</label>
+                                <select id="alert-type-select" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #CBD5E1;">
+                                    <option value="PRICE_ABOVE">Price Crosses ABOVE (Target Price)</option>
+                                    <option value="PRICE_BELOW">Price Crosses BELOW (Stop Loss)</option>
+                                    <option value="PRED_ABOVE">AI Forecast Jump > %</option>
+                                    <option value="SENTIMENT_BELOW">News Sentiment Drops Below Score</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: #64748B; font-weight: 600;">Target Threshold (₹ / %)</label>
+                                <input type="number" step="0.1" id="alert-target-input" placeholder="e.g. 2500.0" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #CBD5E1;">
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                            <div>
+                                <label style="font-size: 12px; color: #64748B; font-weight: 600;">Notification Channel</label>
+                                <select id="alert-channel-select" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #CBD5E1;">
+                                    <option value="EMAIL" selected>EMAIL ONLY (Gmail SMTP)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: #64748B; font-weight: 600;">Recipient Email Address</label>
+                                <input type="email" id="alert-email-input" placeholder="e.g. user@example.com" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #CBD5E1;">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                            <button id="test-alert-btn" class="btn btn-secondary" style="padding: 8px 16px;">
+                                ⚡ TEST DISPATCH ALERT
+                            </button>
+                            <button id="add-alert-btn" class="btn btn-primary" style="padding: 8px 16px; background: #2563EB;">
+                                ➕ SAVE ALERT RULE
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ACTIVE ALERTS TABLE -->
+                    <h3 style="font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 12px;">Active Alert Rules</h3>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Alert ID</th>
+                                    <th>Ticker</th>
+                                    <th>Trigger Condition</th>
+                                    <th>Threshold Value</th>
+                                    <th>Status</th>
+                                    <th>Created At</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alerts-table-body">
+                                <tr><td colspan="7" style="text-align: center; color: #94A3B8;">Loading active alerts...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW: STOCK COMPARISON VIEW -->
+            <div id="view-comparison" class="page-view" style="display: none;">
+                <section class="card comparison-module" style="border-radius: 16px; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); padding: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #F1F5F9;">
+                        <div>
+                            <h2 style="font-size: 22px; font-weight: 800; color: #0F172A; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px;">
+                                <span>⚖️ Multi-Stock Performance & Risk Comparison</span>
+                            </h2>
+                            <p style="color: #64748B; font-size: 13.5px; margin-top: 4px;">
+                                Compare historical returns, volatility, max drawdown, base-100 normalized trajectories, and 7-day AI forecasts across 2 to 5 stocks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- STOCK COMPARISON CONTROLS BAR -->
+                    <div class="card info-card" style="margin-bottom: 24px; border-radius: 14px; border: 1px solid #93C5FD; border-left: 5px solid #2563EB; background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); padding: 18px 20px;">
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h3 style="color: #1E40AF; font-size: 15px; font-weight: 700; margin: 0;">
+                                    🎯 Select Stocks for Comparison (Min 2, Max 5)
+                                </h3>
+                                <span style="font-size: 12px; color: #1E3A8A; font-weight: 600;" id="comp-count-badge">2 / 5 Selected</span>
+                            </div>
+
+                            <!-- INPUT ROW -->
+                            <div style="display: grid; grid-template-columns: 2fr auto 1fr auto; gap: 12px; align-items: center;">
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" id="comp-stock-input" list="stocks-datalist" placeholder="Add stock (e.g. RELIANCE.NS, TCS.NS, INFY.NS)..." class="stock-input" style="width: 100%; text-transform: uppercase;">
+                                    <button id="comp-add-stock-btn" class="btn btn-secondary" style="padding: 10px 16px; white-space: nowrap;">
+                                        ➕ Add
+                                    </button>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <label for="comp-period-select" style="font-size: 12.5px; font-weight: 600; color: #1E3A8A; white-space: nowrap;">Period:</label>
+                                    <select id="comp-period-select" class="select-sm" style="padding: 8px 12px; font-size: 13px; border-radius: 8px; border: 1px solid #93C5FD; background: #FFFFFF; font-weight: 600;">
+                                        <option value="1m">1 Month</option>
+                                        <option value="3m">3 Months</option>
+                                        <option value="6m">6 Months</option>
+                                        <option value="1y" selected>1 Year</option>
+                                        <option value="2y">2 Years (Max)</option>
+                                    </select>
+                                </div>
+
+                                <div></div>
+
+                                <button id="comp-submit-btn" class="btn btn-primary" style="padding: 10px 24px; font-weight: 700; font-size: 13px; background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);">
+                                    ⚡ COMPARE NOW
+                                </button>
+                            </div>
+
+                            <!-- SELECTED CHIPS CONTAINER -->
+                            <div id="comp-selected-chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; padding-top: 10px; border-top: 1px solid rgba(147, 197, 253, 0.5);">
+                                <!-- Chips dynamically populated via JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WARNING / ALERT BANNER -->
+                    <div id="comp-alert-banner" style="display: none; padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; font-size: 13px; font-weight: 600;"></div>
+
+                    <!-- COMPARISON SUMMARY KPIS -->
+                    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 24px; gap: 14px;">
+                        <div class="kpi-card" style="border-left: 4px solid #38BDF8;">
+                            <div class="kpi-label">Top Return Performer</div>
+                            <div class="kpi-value" id="comp-kpi-top-return" style="color: #38BDF8; font-size: 18px;">--</div>
+                            <div class="kpi-sub" id="comp-kpi-top-return-sub">Period Return</div>
+                        </div>
+                        <div class="kpi-card" style="border-left: 4px solid #34D399;">
+                            <div class="kpi-label">Lowest Volatility (Risk)</div>
+                            <div class="kpi-value" id="comp-kpi-lowest-vol" style="color: #34D399; font-size: 18px;">--</div>
+                            <div class="kpi-sub" id="comp-kpi-lowest-vol-sub">Annualized Volatility</div>
+                        </div>
+                        <div class="kpi-card" style="border-left: 4px solid #F59E0B;">
+                            <div class="kpi-label">Lowest Max Drawdown</div>
+                            <div class="kpi-value" id="comp-kpi-best-dd" style="color: #F59E0B; font-size: 18px;">--</div>
+                            <div class="kpi-sub" id="comp-kpi-best-dd-sub">Peak Decline</div>
+                        </div>
+                        <div class="kpi-card" style="border-left: 4px solid #8B5CF6;">
+                            <div class="kpi-label">Common Trading Days</div>
+                            <div class="kpi-value" id="comp-kpi-dates-count" style="color: #8B5CF6; font-size: 18px;">0</div>
+                            <div class="kpi-sub" id="comp-kpi-dates-sub">Aligned Range</div>
+                        </div>
+                    </div>
+
+                    <!-- NORMALIZED PERFORMANCE COMPARISON CHART -->
+                    <div class="card chart-card" style="margin-bottom: 24px; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0; display: flex; align-items: center; gap: 8px;">
+                                    <span>📈 Normalized Performance Comparison (Base = 100)</span>
+                                </h3>
+                                <p style="color: #64748B; font-size: 12.5px; margin-top: 2px;">
+                                    All stock series start at 100.0 on the initial common trading date to show relative percentage growth over time.
+                                </p>
+                            </div>
+                        </div>
+                        <div id="plotlyCompNormalizedChart" style="width: 100%; height: 420px;"></div>
+                    </div>
+
+                    <!-- CLOSING PRICES COMPARISON CHART -->
+                    <div class="card chart-card" style="margin-bottom: 24px; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">
+                                    📊 Actual Daily Closing Prices Trajectory (₹)
+                                </h3>
+                                <p style="color: #64748B; font-size: 12.5px; margin-top: 2px;">
+                                    Unadjusted historical closing prices across common trading dates.
+                                </p>
+                            </div>
+                        </div>
+                        <div id="plotlyCompPricesChart" style="width: 100%; height: 380px;"></div>
+                    </div>
+
+                    <!-- RISK & PERFORMANCE COMPARISON METRICS TABLE -->
+                    <div class="card" style="margin-bottom: 24px; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">
+                                📋 Financial Risk & Performance Analytics Table
+                            </h3>
+                            <span style="font-size: 12px; color: #64748B;">Aligned over common trading dates</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="comp-metrics-table">
+                                <thead>
+                                    <tr>
+                                        <th>Stock Symbol</th>
+                                        <th style="text-align: right;">Latest Close (₹)</th>
+                                        <th style="text-align: center;">Latest Date</th>
+                                        <th style="text-align: right;">Abs Change (₹)</th>
+                                        <th style="text-align: right;">Return (%)</th>
+                                        <th style="text-align: right;">Annual Volatility (%)</th>
+                                        <th style="text-align: right;">Max Drawdown (%)</th>
+                                        <th style="text-align: center;">Trading Days</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="comp-metrics-table-body">
+                                    <tr><td colspan="8" style="text-align: center; color: #94A3B8; padding: 20px;">Click 'Compare Now' to calculate risk metrics...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- AI MODEL PREDICTION COMPARISON -->
+                    <div class="card info-card" style="border-radius: 14px; border: 1px solid #DDD6FE; border-left: 5px solid #8B5CF6; background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%); padding: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <div>
+                                <h3 style="color: #5B21B6; font-size: 16px; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 8px;">
+                                    <span>🔮 AI Model 7-Day Prediction Trajectory Comparison</span>
+                                </h3>
+                                <p style="color: #6D28D9; font-size: 12.5px; margin-top: 2px;">
+                                    Multi-model ensemble (LSTM + XGBoost + RF + LightGBM) forecast paths for selected stocks.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- PREDICTION CHART -->
+                        <div id="plotlyCompPredictionsChart" style="width: 100%; height: 360px; margin-bottom: 16px;"></div>
+
+                        <!-- PREDICTION METRICS BREAKDOWN GRID -->
+                        <div id="comp-predictions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                            <!-- Dynamic forecast cards populated via JS -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW 3: HISTORICAL DATA VIEW (HISTORICAL PRICE TABLE) -->
+            <div id="view-historical" class="page-view" style="display: none;">
+                <section class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2 style="font-size: 20px; font-weight: 700; color: #0F172A;" id="hist-view-title">Historical Market Data</h2>
+                            <p style="color: #64748B; font-size: 13px;">Daily closing prices sourced from Yahoo Finance</p>
+                        </div>
+                    </div>
+                    <div class="table-container" style="max-height: 500px; overflow-y: auto;">
+                        <table class="data-table" id="historical-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Closing Price (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historical-table-body">
+                                <tr><td colspan="2" style="text-align: center; color: #94A3B8;">Loading historical data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/tradingview_chart.js') }}?v=3"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}?v=3"></script>
+</body>
+</html>

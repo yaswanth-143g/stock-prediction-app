@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — NSE Quant Stock Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #080B10;
+            --card-bg: #0F151D;
+            --card-border: #1C2632;
+            --primary: #2563EB;
+            --primary-glow: rgba(37, 99, 235, 0.25);
+            --accent-green: #10B981;
+            --accent-cyan: #38BDF8;
+            --text-main: #F5F7FA;
+            --text-muted: #697586;
+            --danger: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 20px;
+            overflow-x: hidden;
+        }
+
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .auth-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .brand-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .card-header {
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .alert-box {
+            display: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 18px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6ee7b7;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            color: #64748b;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 11px 16px 11px 42px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--primary-glow);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .form-input:focus + .input-icon {
+            color: var(--primary);
+        }
+
+        .pw-strength {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .pw-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+            background: linear-gradient(135deg, #34d399, #10b981);
+        }
+
+        .auth-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .auth-link {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .auth-link:hover {
+            color: var(--accent-cyan);
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+
+    <div class="auth-container">
+        <div class="brand-header">
+            <a href="/" class="brand-logo">
+                <div class="brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <div class="brand-title">NSE QUANT PLATFORM</div>
+                    <div class="brand-subtitle">AI & Algorithmic Stock Trading Intelligence</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="auth-card">
+            <div class="card-header">
+                <h2>Create Account</h2>
+                <p>Register your user profile stored securely in MySQL</p>
+            </div>
+
+            <div id="alert-box" class="alert-box">
+                <i id="alert-icon" class="fa-solid fa-circle-exclamation"></i>
+                <span id="alert-msg"></span>
+            </div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" class="form-input" placeholder="johndoe" required autofocus>
+                        <i class="fa-solid fa-user input-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Min. 6 characters" required oninput="checkStrength()">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                    </div>
+                    <div class="pw-strength">
+                        <div id="pw-bar" class="pw-bar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="confirm_password">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm_password" class="form-input" placeholder="Re-enter password" required>
+                        <i class="fa-solid fa-check-double input-icon"></i>
+                    </div>
+                </div>
+
+                <label class="checkbox-container">
+                    <input type="checkbox" id="terms" required checked>
+                    <span>I accept terms & save profile to MySQL database</span>
+                </label>
+
+                <button type="submit" id="btn-register" class="btn-submit">
+                    <span id="btn-text">Create Quant Account</span>
+                    <div id="btn-spinner" class="spinner"></div>
+                </button>
+            </form>
+
+            <!-- STEP 2: OTP VERIFICATION FORM (HIDDEN BY DEFAULT) -->
+            <form id="otp-form" style="display: none;">
+                <div style="background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(59, 130, 246, 0.25); padding: 14px 16px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="font-size: 13px; color: #93c5fd; font-weight: 500;">
+                        Enter the 6-digit OTP code sent to:
+                    </div>
+                    <div id="otp-target-email" style="font-size: 15px; font-weight: 700; color: #fff; margin-top: 4px;">
+                        user@example.com
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="otp_code" style="text-align: center; display: block;">6-Digit Verification Code</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="otp_code" class="form-input" placeholder="123456" maxlength="6" pattern="[0-9]{6}" style="letter-spacing: 8px; font-size: 24px; font-weight: 800; text-align: center; font-family: 'JetBrains Mono', monospace; padding-left: 16px;" required autofocus>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-verify-otp" class="btn-submit" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); margin-bottom: 14px;">
+                    <span id="btn-verify-text">Verify & Complete Registration 🔐</span>
+                    <div id="btn-verify-spinner" class="spinner"></div>
+                </button>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-muted);">
+                    <button type="button" id="btn-resend-otp" style="background: none; border: none; color: var(--accent-cyan); font-weight: 600; cursor: pointer; text-decoration: underline;">
+                        Resend Code
+                    </button>
+                    <span id="otp-timer">Expires in 10:00</span>
+                </div>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="/login" class="auth-link">Sign In</a>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Return to Terminal Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let targetUserEmail = "";
+
+        function showAlert(message, isSuccess = false) {
+            const box = document.getElementById("alert-box");
+            const msg = document.getElementById("alert-msg");
+            const icon = document.getElementById("alert-icon");
+
+            box.className = "alert-box " + (isSuccess ? "alert-success" : "alert-danger");
+            icon.className = "fa-solid " + (isSuccess ? "fa-circle-check" : "fa-circle-exclamation");
+            msg.textContent = message;
+            box.style.display = "flex";
+        }
+
+        function checkStrength() {
+            const val = document.getElementById("password").value;
+            const bar = document.getElementById("pw-bar");
+            let score = 0;
+            if (val.length >= 6) score += 40;
+            if (/[A-Z]/.test(val)) score += 30;
+            if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score += 30;
+
+            bar.style.width = score + "%";
+            if (score <= 40) bar.style.backgroundColor = "#ef4444";
+            else if (score <= 70) bar.style.backgroundColor = "#f59e0b";
+            else bar.style.backgroundColor = "#10b981";
+        }
+
+        document.getElementById("register-form").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+            const btn = document.getElementById("btn-register");
+            const btnText = document.getElementById("btn-text");
+            const btnSpinner = document.getElementById("btn-spinner");
+
+            if (password.length < 6) {
+                showAlert("Password must be at least 6 characters long.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert("Passwords do not match. Please re-enter.");
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.textContent = "Sending Verification OTP...";
+            btnSpinner.style.display = "inline-block";
+
+            try {
+                const response = await fetch("/api/auth/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === "otp_required") {
+                    targetUserEmail = data.email;
+                    document.getElementById("otp-target-email").textContent = data.email;
+
+                    // Transition to OTP Step
+                    document.getElementById("register-form").style.display = "none";
+                    document.getElementById("otp-form").style.display = "block";
+                    document.querySelector(".card-header h2").textContent = "Verify Email OTP";
+                    document.querySelector(".card-header p").textContent = "Step 2: Enter the 6-digit code sent to your inbox";
+
+                    showAlert(`Verification code sent to ${data.email}! Check your email inbox.`, true);
+                    
+                    if (data.otp_demo) {
+                        console.log("DEMO OTP CODE:", data.otp_demo);
+                    }
+                } else if (response.ok && data.status === "success") {
+                    localStorage.setItem("jwt_token", data.token);
+                    localStorage.setItem("user_info", JSON.stringify(data.user));
+                    showAlert("Account created successfully! Redirecting...", true);
+                    setTimeout(() => { window.location.href = "/"; }, 1000);
+                } else {
+                    showAlert(data.message || "Registration failed. Please try again.");
+                    btn.disabled = false;
+                    btnText.textContent = "Create Quant Account";
+                    btnSpinner.style.display = "none";
+                }
+            } catch (err) {
+                showAlert("Connection error: Unable to reach server.");
+                btn.disabled = false;
+                btnText.textContent = "Create Quant Account";
+                btnSpinner.style.display = "none";
+            }
+        });
+
+        // OTP Verification Form Handler
+        document.getElementById("otp-form").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const otpCode = document.getElementById("otp_code").value.trim();
+            const btn = document.getElementById("btn-verify-otp");
+            const btnText = document.getElementById("btn-verify-text");
+            const btnSpinner = document.getElementById("btn-verify-spinner");
+
+            if (otpCode.length !== 6 || !/^\d+$/.test(otpCode)) {
+                showAlert("Please enter a valid 6-digit numeric OTP code.");
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.textContent = "Verifying Code...";
+            btnSpinner.style.display = "inline-block";
+
+            try {
+                const response = await fetch("/api/auth/verify-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: targetUserEmail, otp: otpCode })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === "success") {
+                    try { localStorage.removeItem("user_portfolio_holdings"); } catch (e) {}
+                    localStorage.setItem("jwt_token", data.token);
+                    localStorage.setItem("user_info", JSON.stringify(data.user));
+                    showAlert("🎉 Email verified & account created! Redirecting to terminal...", true);
+
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 1200);
+                } else {
+                    showAlert(data.message || "OTP verification failed. Please check the code.");
+                    btn.disabled = false;
+                    btnText.textContent = "Verify & Complete Registration 🔐";
+                    btnSpinner.style.display = "none";
+                }
+            } catch (err) {
+                showAlert("Connection error during verification.");
+                btn.disabled = false;
+                btnText.textContent = "Verify & Complete Registration 🔐";
+                btnSpinner.style.display = "none";
+            }
+        });
+
+        // Resend OTP Handler
+        document.getElementById("btn-resend-otp").addEventListener("click", async function() {
+            if (!targetUserEmail) return;
+            this.disabled = true;
+            this.textContent = "Sending...";
+
+            try {
+                const response = await fetch("/api/auth/resend-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: targetUserEmail })
+                });
+
+                const data = await response.json();
+                if (response.ok && data.status === "success") {
+                    showAlert("Fresh OTP verification code dispatched to your email!", true);
+                    if (data.otp_demo) console.log("DEMO NEW OTP CODE:", data.otp_demo);
+                } else {
+                    showAlert(data.message || "Failed to resend OTP code.");
+                }
+            } catch (err) {
+                showAlert("Error resending OTP code.");
+            } finally {
+                setTimeout(() => {
+                    document.getElementById("btn-resend-otp").disabled = false;
+                    document.getElementById("btn-resend-otp").textContent = "Resend Code";
+                }, 10000);
+            }
+        });
+    </script>
+</body>
+</html>

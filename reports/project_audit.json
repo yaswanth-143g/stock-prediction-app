@@ -1,0 +1,261 @@
+{
+  "audit_metadata": {
+    "project_name": "7-Day Future Stock Price Prediction Engine",
+    "audit_type": "Forensic Diagnostic & Performance Audit",
+    "audit_timestamp": "2026-10-08T11:25:00Z",
+    "protocol": "READ-ONLY, REPORT-ONLY",
+    "auditor": "Antigravity AI Quantitative Audit Engine"
+  },
+  "section1_data_and_split": {
+    "training_tickers_count": 200,
+    "sample_tickers": [
+      "RELIANCE.NS",
+      "TCS.NS",
+      "INFY.NS",
+      "HDFCBANK.NS",
+      "ICICIBANK.NS",
+      "SBIN.NS",
+      "LT.NS",
+      "ITC.NS",
+      "HINDUNILVR.NS",
+      "BHARTIARTL.NS"
+    ],
+    "date_range": {
+      "start_date": "2016-10-03",
+      "end_date": "2026-10-02"
+    },
+    "rows_per_ticker": {
+      "min": 499,
+      "median": 2475,
+      "max": 2475
+    },
+    "row_survival_example_reliance": {
+      "raw_downloaded_rows": 2475,
+      "survived_after_200d_ma_features": 2270,
+      "survived_after_7d_target_shift": 2263
+    },
+    "train_val_test_split": {
+      "method": "Time-based chronological split (70% train / 30% test)",
+      "code_reference": "train_models.py (Line 97): `train_end = int(len(df_combined) * 0.70)`",
+      "embargo_gap_days": 0,
+      "embargo_gap_code_reference": "train_models.py (Lines 97-118): No embargo gap implemented in train_models.py split routine.",
+      "leakage_risk_explanation": "Without an embargo gap equal to or exceeding the 7-day forecast horizon, target returns at index `train_end - 1` depend on Close prices from indices `train_end` to `train_end + 6` (which fall into the test set). This causes target overlap leakage across the train/test boundary."
+    }
+  },
+  "section2_data_leakage_audit": {
+    "feature_engineering_audit": {
+      "code_reference": "feature_engineering.py (Lines 85-150): `build_canonical_feature_set`",
+      "total_features": 36,
+      "audit_status": "CLEAN",
+      "summary": "All 36 features strictly compute backward-looking rolling statistics (.rolling(), .shift(1), .pct_change(), .cumsum()). No future data (shift(-1) or lookahead) is used in feature calculation."
+    },
+    "target_calculation_audit": {
+      "code_reference": "train_models.py (Lines 50-63): `prepare_targets`",
+      "formula": "cum_ret = np.log(df['Close'].shift(-d) / (df['Close'] + 1e-9))",
+      "audit_status": "CLEAN",
+      "summary": "Target calculation correctly shifts forward by -d (d=1..7) to create target vectors without contaminating input feature columns."
+    },
+    "scaler_fitting_audit": {
+      "per_stock_scaler": {
+        "code_reference": "train_models.py (Lines 98-101): `scaler_X.fit(X_all[:train_end])`, `scaler_y.fit(y_all[:train_end])`",
+        "audit_status": "CLEAN"
+      },
+      "global_model_scaler": {
+        "code_reference": "train_models.py (Lines 192-193): `X_scaled = scaler_X.fit_transform(X_all)`, `y_scaled = scaler_y.fit_transform(y_all)`",
+        "audit_status": "CRITICAL_LEAKAGE",
+        "severity": "CRITICAL",
+        "explanation": "In `train_global_model_from_csv`, `MinMaxScaler.fit_transform` is executed on the full dataset `X_all` and `y_all` (all tickers across the entire 10-year history) BEFORE splitting or training. This leaks global min/max feature and target statistics into out-of-sample evaluation."
+      }
+    }
+  },
+  "section3_quantitative_model_metrics": {
+    "total_test_samples": 2430,
+    "evaluated_tickers_count": 10,
+    "horizon_metrics": [
+      {
+        "horizon_day": 1,
+        "raw_ensemble": { "rmse": 0.319213, "mae": 0.318768, "r2": -544.0092, "dir_acc_pct": 48.81, "spearman_ic": -0.0186 },
+        "shrunk_ensemble": { "rmse": 0.112484, "mae": 0.111591, "r2": -66.6748, "dir_acc_pct": 48.81, "spearman_ic": -0.0186 },
+        "zero_baseline": { "rmse": 0.013674, "mae": 0.009783, "r2": -0.0, "dir_acc_pct": 48.81, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.032516, "mae": 0.02442, "r2": -4.655, "dir_acc_pct": 49.92, "spearman_ic": -0.0049 }
+      },
+      {
+        "horizon_day": 2,
+        "raw_ensemble": { "rmse": 0.346986, "mae": 0.346189, "r2": -337.5537, "dir_acc_pct": 48.89, "spearman_ic": -0.0331 },
+        "shrunk_ensemble": { "rmse": 0.122814, "mae": 0.121246, "r2": -41.4129, "dir_acc_pct": 48.89, "spearman_ic": -0.0331 },
+        "zero_baseline": { "rmse": 0.018858, "mae": 0.013788, "r2": -0.0, "dir_acc_pct": 48.89, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.034762, "mae": 0.026256, "r2": -2.3979, "dir_acc_pct": 50.66, "spearman_ic": 0.0115 }
+      },
+      {
+        "horizon_day": 3,
+        "raw_ensemble": { "rmse": 0.342088, "mae": 0.341217, "r2": -221.8907, "dir_acc_pct": 48.31, "spearman_ic": -0.0433 },
+        "shrunk_ensemble": { "rmse": 0.121822, "mae": 0.119596, "r2": -27.2661, "dir_acc_pct": 48.31, "spearman_ic": -0.0433 },
+        "zero_baseline": { "rmse": 0.022915, "mae": 0.016956, "r2": -0.0001, "dir_acc_pct": 48.31, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.036938, "mae": 0.028095, "r2": -1.5988, "dir_acc_pct": 50.66, "spearman_ic": 0.0205 }
+      },
+      {
+        "horizon_day": 4,
+        "raw_ensemble": { "rmse": 0.334826, "mae": 0.333535, "r2": -159.2607, "dir_acc_pct": 48.44, "spearman_ic": -0.0450 },
+        "shrunk_ensemble": { "rmse": 0.120081, "mae": 0.117036, "r2": -19.6129, "dir_acc_pct": 48.44, "spearman_ic": -0.0450 },
+        "zero_baseline": { "rmse": 0.026453, "mae": 0.019713, "r2": -0.0003, "dir_acc_pct": 48.44, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.039128, "mae": 0.029676, "r2": -1.1886, "dir_acc_pct": 51.03, "spearman_ic": 0.0207 }
+      },
+      {
+        "horizon_day": 5,
+        "raw_ensemble": { "rmse": 0.337237, "mae": 0.335738, "r2": -127.8993, "dir_acc_pct": 48.93, "spearman_ic": -0.0371 },
+        "shrunk_ensemble": { "rmse": 0.121691, "mae": 0.117940, "r2": -15.7841, "dir_acc_pct": 48.93, "spearman_ic": -0.0371 },
+        "zero_baseline": { "rmse": 0.029711, "mae": 0.022292, "r2": -0.0005, "dir_acc_pct": 48.93, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.041501, "mae": 0.031529, "r2": -0.9520, "dir_acc_pct": 50.78, "spearman_ic": 0.0114 }
+      },
+      {
+        "horizon_day": 6,
+        "raw_ensemble": { "rmse": 0.367452, "mae": 0.365959, "r2": -125.2052, "dir_acc_pct": 49.05, "spearman_ic": -0.0077 },
+        "shrunk_ensemble": { "rmse": 0.132684, "mae": 0.128584, "r2": -15.4555, "dir_acc_pct": 49.05, "spearman_ic": -0.0077 },
+        "zero_baseline": { "rmse": 0.032718, "mae": 0.024646, "r2": -0.0005, "dir_acc_pct": 49.05, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.043787, "mae": 0.033482, "r2": -0.7921, "dir_acc_pct": 49.34, "spearman_ic": 0.0002 }
+      },
+      {
+        "horizon_day": 7,
+        "raw_ensemble": { "rmse": 0.325073, "mae": 0.322952, "r2": -82.6396, "dir_acc_pct": 48.52, "spearman_ic": 0.0160 },
+        "shrunk_ensemble": { "rmse": 0.119103, "mae": 0.113682, "r2": -10.2279, "dir_acc_pct": 48.52, "spearman_ic": 0.0160 },
+        "zero_baseline": { "rmse": 0.035557, "mae": 0.026907, "r2": -0.0007, "dir_acc_pct": 48.52, "spearman_ic": 0.0 },
+        "last_return_baseline": { "rmse": 0.046045, "mae": 0.035185, "r2": -0.6781, "dir_acc_pct": 49.05, "spearman_ic": -0.0039 }
+      }
+    ],
+    "beats_zero_baseline_on_rmse": false,
+    "rmse_ratio_shrunk_vs_zero": [ 8.23, 6.51, 5.32, 4.54, 4.10, 4.06, 3.35 ]
+  },
+  "section4_calibration_and_signal_distribution": {
+    "tickers_evaluated": 35,
+    "signal_distribution": {
+      "HOLD": { "count": 35, "percentage": 100.0 },
+      "BUY": { "count": 0, "percentage": 0.0 },
+      "SELL": { "count": 0, "percentage": 0.0 }
+    },
+    "predicted_7d_total_return_pct_distribution": {
+      "min": -0.33,
+      "median": 0.03,
+      "max": 0.70,
+      "std": 0.20,
+      "exceed_pos_1_5_pct": 0,
+      "exceed_neg_1_5_pct": 0
+    },
+    "confidence_score_distribution": {
+      "min": 30.0,
+      "median": 50.6,
+      "max": 53.6,
+      "std": 5.8
+    },
+    "risk_reward_ratio_distribution": {
+      "min": 1.54,
+      "median": 1.58,
+      "max": 3.58,
+      "std": 0.37
+    },
+    "assessment": "Signal engine generates 100% HOLD signals because predicted returns are heavily compressed around 0.0% by Ridge shrinkage (shrinkage_factor=0.35 in predict.py Line 330), never reaching the volatility-scaled threshold (>=1.5%)."
+  },
+  "section5_risk_management_bounds": {
+    "confidence_bounds_90_coverage": [
+      { "horizon_day": 1, "coverage_pct": 0.04 },
+      { "horizon_day": 2, "coverage_pct": 0.25 },
+      { "horizon_day": 3, "coverage_pct": 0.78 },
+      { "horizon_day": 4, "coverage_pct": 1.69 },
+      { "horizon_day": 5, "coverage_pct": 2.72 },
+      { "horizon_day": 6, "coverage_pct": 3.21 },
+      { "horizon_day": 7, "coverage_pct": 5.84 }
+    ],
+    "bound_calculation_method": "Dynamic volatility scaling",
+    "bound_code_reference": "predict.py (Lines 353-370): `r_upper = r_hat + (1.645 * daily_vol * np.sqrt(k))`, `p_upper = curr_price * np.exp(r_upper)`",
+    "directional_hit_rate_by_confidence_bucket": [
+      { "bucket": "55-75%", "sample_count": 368, "directional_hit_rate_pct": 42.93 },
+      { "bucket": "75-95%", "sample_count": 2062, "directional_hit_rate_pct": 49.52 }
+    ],
+    "calibration_verdict": "Uncalibrated & severe deficit. Actual 90% bounds coverage is under 6% across all horizons due to un-normalized scaling mismatches between raw prediction outputs and price space."
+  },
+  "section6_ensemble_weights_and_ablation": {
+    "ensemble_weights_in_use": {
+      "code_reference": "predict.py (Lines 62-67, 319-323)",
+      "weights": {
+        "random_forest": 0.35,
+        "xgboost": 0.25,
+        "lstm": 0.25,
+        "lightgbm": 0.15
+      }
+    },
+    "historical_weight_changes": "NOT FOUND (No historical weight log file present in repository)",
+    "ablation_study_rmse": {
+      "full_ensemble": 0.339296,
+      "drop_random_forest": 0.282094,
+      "drop_xgboost": 0.302372,
+      "drop_lightgbm": 0.318715,
+      "drop_lstm": 0.449505
+    },
+    "component_insights": "Random Forest is the single worst performer (dropping RF reduces ensemble RMSE by 0.0572). LSTM is the single most critical positive contributor (dropping LSTM increases ensemble RMSE by 0.1102)."
+  },
+  "section7_backtest_simulation": {
+    "simulation_parameters": {
+      "transaction_cost_per_side_pct": 0.1,
+      "total_trades": 2430
+    },
+    "strategy_metrics": {
+      "win_rate_pct": 45.93,
+      "average_return_per_trade_pct": -0.2925,
+      "sharpe_ratio": -0.59,
+      "max_drawdown_pct": 896.61
+    },
+    "buy_and_hold_benchmark": {
+      "average_7d_return_pct": -0.0925,
+      "sharpe_ratio": -0.19
+    },
+    "financial_viability_verdict": "UNVIABLE. The model suffers from severe negative expectancy and underperforms Buy & Hold benchmark by 0.40 Sharpe points."
+  },
+  "section8_operational_audit": {
+    "environment": {
+      "python_version": "3.13.2",
+      "scikit_learn": "1.8.0",
+      "xgboost": "3.2.0",
+      "lightgbm": "4.6.0",
+      "pandas": "3.0.1",
+      "numpy": "2.4.3"
+    },
+    "dataset_scale": {
+      "total_training_rows": 441183,
+      "total_tickers": 200
+    },
+    "model_file_sizes": {
+      "models/global_model.pkl": "1.64 MB",
+      "models/global_scaler.pkl": "0.0 MB",
+      "models/model_random_forest.pkl": "3.41 MB",
+      "models/model_xgboost.pkl": "1.04 MB",
+      "models/model_lightgbm.pkl": "0.52 MB",
+      "models/model_lstm.keras": "0.32 MB"
+    },
+    "inference_latency": {
+      "ram_cache_hit_median_ms": 0.02,
+      "ram_cache_miss_median_ms": 20074.82,
+      "target_sub_50ms_met_on_cache_hit": true
+    }
+  },
+  "audit_summary_and_verdict": {
+    "institutional_checklist": [
+      { "section": "Section 1: Data & Split", "status": "CONDITIONAL PASS", "notes": "Time-based split present, but train_models.py lacks purging/embargo gap." },
+      { "section": "Section 2: Data Leakage Audit", "status": "FAIL", "notes": "train_models.py (Lines 192-193) fits global scaler on full X_all and y_all before splitting." },
+      { "section": "Section 3: Quantitative Metrics", "status": "FAIL", "notes": "Negative R2 across all horizons; fails to beat Zero-Return baseline on RMSE." },
+      { "section": "Section 4: Output Calibration", "status": "FAIL", "notes": "100% HOLD signals generated due to over-shrinkage of returns." },
+      { "section": "Section 5: Risk Bounds Reliability", "status": "FAIL", "notes": "90% confidence bounds achieve only 0.04%-5.84% empirical coverage." },
+      { "section": "Section 6: Ensemble & Ablation", "status": "CONDITIONAL PASS", "notes": "Multi-model ensemble present, but static hardcoded weights and RF degrades accuracy." },
+      { "section": "Section 7: Backtest PnL Viability", "status": "FAIL", "notes": "Sharpe Ratio -0.59, Win Rate 45.93%, Max Drawdown 896.61% vs Buy & Hold Sharpe -0.19." },
+      { "section": "Section 8: Operational Latency", "status": "CONDITIONAL PASS", "notes": "RAM cache hit (0.02 ms) is sub-50ms, but cache miss requires ~20s due to network fetching." }
+    ],
+    "top_3_critical_vulnerabilities": [
+      "Global Target & Feature Scaler Leakage in train_models.py (Lines 192-193): MinMaxScaler.fit_transform is executed on the full dataset (X_all, y_all) prior to model splitting.",
+      "Negative R2 Performance & Baseline Underperformance: Shrunk ensemble RMSE is 3.35x to 8.23x worse than predicting 0% return, resulting in negative R2 (-10.2 to -544.0).",
+      "Severe Uncertainty Bounds Deficit: 90% confidence bounds cover < 6% of real price targets due to target normalization scale mismatch."
+    ],
+    "top_3_required_fixes": [
+      "Refactor train_models.py to fit scalers strictly on training data split and enforce a 7-day embargo gap between train and test sets.",
+      "Fix target inverse-transformation in predict.py before constructing confidence bounds and signal thresholds.",
+      "Remove or retrain Random Forest model, or implement dynamic Ridge meta-stacking, as dropping RF reduces ensemble RMSE by 17%."
+    ]
+  }
+}

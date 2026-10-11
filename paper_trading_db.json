@@ -1,0 +1,76 @@
+{
+  "orders": {
+    "ORD-569DCD42": {
+      "order_id": "ORD-569DCD42",
+      "user_id": "test_user_unit",
+      "ticker": "RELIANCE.NS",
+      "side": "BUY",
+      "action": "BUY",
+      "quantity": 5,
+      "shares": 5,
+      "order_type": "MARKET",
+      "price": 401.67,
+      "execution_price": 401.67,
+      "limit_price": 401.67,
+      "status": "FILLED",
+      "execution_mode": "PAPER_TRADING",
+      "total_cost": 2008.35,
+      "nominal_value": 2008.35,
+      "estimated_fees": 2.61,
+      "timestamp": "2026-10-09 18:53:34 IST"
+    },
+    "ORD-DE9D2BC3": {
+      "order_id": "ORD-DE9D2BC3",
+      "user_id": "test_user_unit",
+      "ticker": "RELIANCE.NS",
+      "side": "BUY",
+      "action": "BUY",
+      "quantity": 5,
+      "shares": 5,
+      "order_type": "MARKET",
+      "price": 1170.3,
+      "execution_price": 1170.3,
+      "limit_price": 1170.3,
+      "status": "FILLED",
+      "execution_mode": "PAPER_TRADING",
+      "total_cost": 5851.5,
+      "nominal_value": 5851.5,
+      "estimated_fees": 7.61,
+      "timestamp": "2026-10-10 21:52:41 IST"
+    },
+    "ORD-1863579A": {
+      "order_id": "ORD-1863579A",
+      "user_id": "test_user_unit",
+      "ticker": "RELIANCE.NS",
+      "side": "BUY",
+      "action": "BUY",
+      "quantity": 5,
+      "shares": 5,
+      "order_type": "MARKET",
+      "price": 1170.3,
+      "execution_price": 1170.3,
+      "limit_price": 1170.3,
+      "status": "FILLED",
+      "execution_mode": "PAPER_TRADING",
+      "total_cost": 5851.5,
+      "nominal_value": 5851.5,
+      "estimated_fees": 7.61,
+      "timestamp": "2026-10-10 21:57:45 IST"
+    }
+  },
+  "positions": {
+    "test_user_unit": {
+      "RELIANCE.NS": {
+        "ticker": "RELIANCE.NS",
+        "shares": 15,
+        "avg_buy_price": 914.09,
+        "current_price": 1170.3,
+        "market_value": 17554.5,
+        "unrealized_pnl": 3843.15
+      }
+    }
+  },
+  "account_balances": {
+    "test_user_unit": 986270.82
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "model_type": "Global Ensemble (MultiOutput RandomForest)",
+    "source_dataset": "merge-csv.csv",
+    "total_tickers": 200,
+    "total_samples": 398782,
+    "train_samples": 279108,
+    "test_samples": 119674,
+    "split_strategy": "per_ticker_by_date_70_30",
+    "trained_at": "2026-10-10 17:48:36",
+    "saved_at": "2026-10-10 17:48:36",
+    "model_status": "TRAINED",
+    "beats_zero_baseline": false,
+    "metrics": {
+        "R2_%": 84.2,
+        "MAE": 0.011,
+        "RMSE": 0.016
+    },
+    "warning": "CRITICAL: The R2_% metric of 84.2% is a static hardcoded in-sample metadata placeholder from train_models.py:211. True out-of-sample R2 on returns is evaluated via quant/walk_forward_validation.py."
+}

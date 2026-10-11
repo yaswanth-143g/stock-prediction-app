@@ -1,0 +1,8 @@
+{
+  "models/global_model.pkl": "21ff2d67aee3f56d3e4df0cfe53e8ee74f6743ecef5d32b807581a166c2c0f88",
+  "models/global_scaler.pkl": "f0343251803dffe0af2c2f3da99c3f5e62889ad3912c9f1dcfe605e9004818b8",
+  "models/global_metadata.json": "2e4f6517b93cfd87d3a73285a16f79d696054686a8def0f99d0b6fbfffdc5eeb",
+  "models/production/global_model.pkl": "21ff2d67aee3f56d3e4df0cfe53e8ee74f6743ecef5d32b807581a166c2c0f88",
+  "models/production/global_scaler.pkl": "f0343251803dffe0af2c2f3da99c3f5e62889ad3912c9f1dcfe605e9004818b8",
+  "models/production/global_metadata.json": "2e4f6517b93cfd87d3a73285a16f79d696054686a8def0f99d0b6fbfffdc5eeb"
+}

@@ -1,0 +1,45 @@
+# Environment & Secrets
+.env
+.env.local
+*.env
+
+# Python Caches & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Saved Models & Heavy Data Artifacts (keep production models only)
+*.h5
+*.pkl
+!models/global_model.pkl
+!models/global_scaler.pkl
+!models/RELIANCE.NS/*.pkl
+!models/production/*.pkl
+
+# Data Directories & Backups
+Stock_Data/
+price_data_clean/
+backups/
+data/ticker_validation/
+experiments/raw_walkforward_results.csv
+merge-csv.csv
+
+# Logs & Runtime Dumps
+logs/*
+!logs/.gitkeep
+*.log
+
+# IDE & OS Caches
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

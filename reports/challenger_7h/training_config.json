@@ -1,0 +1,19 @@
+{
+    "experiment_id": "EXP_CHALLENGER_7H_001",
+    "random_seed": 42,
+    "models": [
+        "RandomForest",
+        "XGBoost",
+        "LightGBM",
+        "LSTM"
+    ],
+    "target_columns": [
+        "log_ret_d1",
+        "log_ret_d2",
+        "log_ret_d3",
+        "log_ret_d4",
+        "log_ret_d5",
+        "log_ret_d6",
+        "log_ret_d7"
+    ]
+}

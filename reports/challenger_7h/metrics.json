@@ -1,0 +1,219 @@
+{
+    "validation": {
+        "day_by_day": {
+            "Day_1": {
+                "directional_accuracy_pct": 48.51,
+                "up_accuracy_pct": 20.35,
+                "down_accuracy_pct": 80.1,
+                "balanced_accuracy_pct": 50.22,
+                "mae": 0.0097,
+                "rmse": 0.0133,
+                "r2_score": -7.88
+            },
+            "Day_2": {
+                "directional_accuracy_pct": 48.51,
+                "up_accuracy_pct": 24.35,
+                "down_accuracy_pct": 75.36,
+                "balanced_accuracy_pct": 49.86,
+                "mae": 0.0096,
+                "rmse": 0.0133,
+                "r2_score": -7.49
+            },
+            "Day_3": {
+                "directional_accuracy_pct": 47.37,
+                "up_accuracy_pct": 15.22,
+                "down_accuracy_pct": 83.09,
+                "balanced_accuracy_pct": 49.15,
+                "mae": 0.01,
+                "rmse": 0.0136,
+                "r2_score": -13.33
+            },
+            "Day_4": {
+                "directional_accuracy_pct": 47.83,
+                "up_accuracy_pct": 20.78,
+                "down_accuracy_pct": 78.16,
+                "balanced_accuracy_pct": 49.47,
+                "mae": 0.0104,
+                "rmse": 0.014,
+                "r2_score": -20.13
+            },
+            "Day_5": {
+                "directional_accuracy_pct": 51.26,
+                "up_accuracy_pct": 25.54,
+                "down_accuracy_pct": 80.1,
+                "balanced_accuracy_pct": 52.82,
+                "mae": 0.0102,
+                "rmse": 0.0138,
+                "r2_score": -16.08
+            },
+            "Day_6": {
+                "directional_accuracy_pct": 47.6,
+                "up_accuracy_pct": 16.02,
+                "down_accuracy_pct": 83.01,
+                "balanced_accuracy_pct": 49.51,
+                "mae": 0.0102,
+                "rmse": 0.0139,
+                "r2_score": -17.37
+            },
+            "Day_7": {
+                "directional_accuracy_pct": 46.45,
+                "up_accuracy_pct": 10.82,
+                "down_accuracy_pct": 86.41,
+                "balanced_accuracy_pct": 48.62,
+                "mae": 0.0099,
+                "rmse": 0.0135,
+                "r2_score": -10.64
+            }
+        },
+        "overall_accuracy_pct": 48.22,
+        "overall_mae": 0.01,
+        "overall_rmse": 0.0136,
+        "min_len": 437
+    },
+    "test": {
+        "day_by_day": {
+            "Day_1": {
+                "directional_accuracy_pct": 47.29,
+                "up_accuracy_pct": 8.33,
+                "down_accuracy_pct": 87.56,
+                "balanced_accuracy_pct": 47.95,
+                "mae": 0.0104,
+                "rmse": 0.0137,
+                "r2_score": -8.62
+            },
+            "Day_2": {
+                "directional_accuracy_pct": 50.35,
+                "up_accuracy_pct": 27.65,
+                "down_accuracy_pct": 74.04,
+                "balanced_accuracy_pct": 50.84,
+                "mae": 0.0104,
+                "rmse": 0.0137,
+                "r2_score": -8.43
+            },
+            "Day_3": {
+                "directional_accuracy_pct": 50.59,
+                "up_accuracy_pct": 42.13,
+                "down_accuracy_pct": 59.33,
+                "balanced_accuracy_pct": 50.73,
+                "mae": 0.0109,
+                "rmse": 0.0141,
+                "r2_score": -16.02
+            },
+            "Day_4": {
+                "directional_accuracy_pct": 50.59,
+                "up_accuracy_pct": 30.41,
+                "down_accuracy_pct": 71.63,
+                "balanced_accuracy_pct": 51.02,
+                "mae": 0.0112,
+                "rmse": 0.0146,
+                "r2_score": -22.54
+            },
+            "Day_5": {
+                "directional_accuracy_pct": 48.71,
+                "up_accuracy_pct": 0.0,
+                "down_accuracy_pct": 99.52,
+                "balanced_accuracy_pct": 49.76,
+                "mae": 0.0111,
+                "rmse": 0.0144,
+                "r2_score": -19.66
+            },
+            "Day_6": {
+                "directional_accuracy_pct": 49.88,
+                "up_accuracy_pct": 1.85,
+                "down_accuracy_pct": 99.52,
+                "balanced_accuracy_pct": 50.69,
+                "mae": 0.0111,
+                "rmse": 0.0144,
+                "r2_score": -20.5
+            },
+            "Day_7": {
+                "directional_accuracy_pct": 49.88,
+                "up_accuracy_pct": 3.24,
+                "down_accuracy_pct": 98.09,
+                "balanced_accuracy_pct": 50.66,
+                "mae": 0.0105,
+                "rmse": 0.0138,
+                "r2_score": -10.28
+            }
+        },
+        "overall_accuracy_pct": 49.61,
+        "overall_mae": 0.0108,
+        "overall_rmse": 0.0141,
+        "min_len": 425
+    },
+    "backtest": {
+        "Total_Return_%": -31.72,
+        "Annualized_Return_%": -18.81,
+        "Sharpe_Ratio": -0.97,
+        "Max_Drawdown_%": 37.5,
+        "Win_Rate_%": 46.9,
+        "Number_of_Trades": 371,
+        "Profit_Factor": 0.84,
+        "Transaction_Fee_Bps": 10
+    },
+    "horizon_correlations": {
+        "Day_1": {
+            "Day_1": 1.0,
+            "Day_2": 0.6877,
+            "Day_3": 0.5095,
+            "Day_4": 0.4442,
+            "Day_5": 0.3911,
+            "Day_6": 0.3652,
+            "Day_7": 0.3258
+        },
+        "Day_2": {
+            "Day_1": 0.6877,
+            "Day_2": 1.0,
+            "Day_3": 0.6506,
+            "Day_4": 0.6137,
+            "Day_5": 0.5937,
+            "Day_6": 0.4192,
+            "Day_7": 0.4701
+        },
+        "Day_3": {
+            "Day_1": 0.5095,
+            "Day_2": 0.6506,
+            "Day_3": 1.0,
+            "Day_4": 0.8466,
+            "Day_5": 0.7337,
+            "Day_6": 0.4583,
+            "Day_7": 0.6083
+        },
+        "Day_4": {
+            "Day_1": 0.4442,
+            "Day_2": 0.6137,
+            "Day_3": 0.8466,
+            "Day_4": 1.0,
+            "Day_5": 0.7348,
+            "Day_6": 0.5416,
+            "Day_7": 0.6297
+        },
+        "Day_5": {
+            "Day_1": 0.3911,
+            "Day_2": 0.5937,
+            "Day_3": 0.7337,
+            "Day_4": 0.7348,
+            "Day_5": 1.0,
+            "Day_6": 0.6103,
+            "Day_7": 0.6486
+        },
+        "Day_6": {
+            "Day_1": 0.3652,
+            "Day_2": 0.4192,
+            "Day_3": 0.4583,
+            "Day_4": 0.5416,
+            "Day_5": 0.6103,
+            "Day_6": 1.0,
+            "Day_7": 0.5248
+        },
+        "Day_7": {
+            "Day_1": 0.3258,
+            "Day_2": 0.4701,
+            "Day_3": 0.6083,
+            "Day_4": 0.6297,
+            "Day_5": 0.6486,
+            "Day_6": 0.5248,
+            "Day_7": 1.0
+        }
+    }
+}

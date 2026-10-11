@@ -1,0 +1,7 @@
+model_or_baseline,directional_accuracy_pct,up_accuracy_pct,down_accuracy_pct,balanced_accuracy_pct,mae,rmse
+Challenger Ensemble,47.76,9.72,87.08,48.4,0.010152,0.013445
+Baseline A (Random 50/50),54.12,52.78,55.5,54.14,0.00979,0.013264
+Baseline B (Always UP),50.82,100.0,0.0,50.0,0.009934,0.013288
+Baseline C (Always DOWN),49.18,0.0,100.0,50.0,0.009971,0.013311
+Baseline D (Training Mean),50.82,100.0,0.0,50.0,0.009798,0.013171
+Baseline E (Previous-Day Direction),47.29,48.15,46.41,47.28,0.014423,0.018287

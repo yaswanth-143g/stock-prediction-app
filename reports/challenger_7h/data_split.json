@@ -1,0 +1,14 @@
+{
+    "train_samples": 1357,
+    "val_samples": 452,
+    "test_samples": 440,
+    "embargo_days": 7,
+    "train_dates": [
+        "2017-07-24",
+        "2023-01-16"
+    ],
+    "test_dates": [
+        "2024-12-11",
+        "2026-09-22"
+    ]
+}

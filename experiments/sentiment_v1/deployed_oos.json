@@ -1,0 +1,28 @@
+{
+    "evaluation_period": "2026-01-01 to 2026-10-09",
+    "total_evaluated_rows": 35125,
+    "total_trading_dates": 188,
+    "sampled_dates_step_7": 27,
+    "mae": {
+        "model_mae": 0.041047,
+        "zero_baseline_mae": 0.040834,
+        "mae_delta": 0.000213
+    },
+    "directional_accuracy_pct": {
+        "model": 45.6,
+        "always_up_baseline": 45.13,
+        "always_down_baseline": 54.87
+    },
+    "spearman_ic_sampled_step_7": {
+        "absolute_ic": -0.073057,
+        "absolute_ic_95_ci": [
+            -0.122363,
+            -0.005555
+        ],
+        "market_relative_ic": -0.032306,
+        "market_relative_ic_95_ci": [
+            -0.059024,
+            -0.004077
+        ]
+    }
+}

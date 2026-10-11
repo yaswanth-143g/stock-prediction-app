@@ -1,0 +1,51 @@
+# INVALID MODELS REGISTRY
+# Generated during Phase A4 Audit (2026-10-10)
+
+The following model files and directories are marked INVALID because they were trained on legacy, synthetic, or rescaled price data from Stock_Data/*.csv:
+
+## Standalone Multi-Model Files (Trained Oct 7, 2026 on Stock_Data/*.csv):
+- models/model_random_forest.pkl (Trained on Stock_Data/*.csv - INVALID)
+- models/model_xgboost.pkl (Trained on Stock_Data/*.csv - INVALID)
+- models/model_lightgbm.pkl (Trained on Stock_Data/*.csv - INVALID)
+- models/model_lstm.keras (Trained on Stock_Data/*.csv - INVALID)
+- models/multi_scalers.pkl (Trained on Stock_Data/*.csv - INVALID)
+
+## Legacy Per-Stock Model Directories (Trained on Stock_Data/*.csv - INVALID):
+- models/AARTIIND.NS/
+- models/ABB.NS/
+- models/ABBOTINDIA.NS/
+- models/ABFRL.NS/
+- models/ACC.NS/
+- models/ADANIENT.NS/
+- models/ADANIPOWER.NS/
+- models/AEGISLOG.NS/
+- models/ALKEM.NS/
+- models/ALLCARGO.NS/
+- models/AMBUJACEM.NS/
+- models/APLAPOLLO.NS/
+- models/APOLLOHOSP.NS/
+- models/AXISBANK.NS/
+- models/BHARTIARTL.NS/
+- models/HDFCBANK.NS/
+- models/HINDUNILVR.NS/
+- models/ICICIBANK.NS/
+- models/INFY.NS/
+- models/ITC.NS/
+- models/KOTAKBANK.NS/
+- models/LT.NS/
+- models/MARUTI.NS/
+- models/RELIANCE.NS/
+- models/SBIN.NS/
+- models/SUNPHARMA.NS/
+- models/TCS.NS/
+- models/TITAN.NS/
+
+## Valid Models:
+- models/global_model.pkl (Trained on merge-csv.csv - VALID)
+- models/global_scaler.pkl (Fitted on merge-csv.csv - VALID)
+
+> [!NOTE]
+> **Temporary Fallback Note (Post-Cleanup Audit 2026-10-10):**
+> Currently, `models/global_model.pkl` in the repository outputs a single 1-day return horizon (`n_outputs_ = 1`), whereas `models/global_scaler.pkl` expects a 7-day vector (`n_features_in_ = 7`).
+> As a result, until a clean 7-horizon global model is retrained, `models/RELIANCE.NS/` (and/or `models/model_random_forest.pkl`) is temporarily required as an operational fallback for multi-horizon inference to avoid shape broadcasting mismatch errors.
+

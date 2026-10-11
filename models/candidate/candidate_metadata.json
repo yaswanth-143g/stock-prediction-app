@@ -1,0 +1,7 @@
+{
+    "ticker": "RELIANCE.NS",
+    "trained_at": "2026-10-07 18:00:17",
+    "status": "LOCKED_CANDIDATE",
+    "features_used": 36,
+    "forecast_horizon": 7
+}

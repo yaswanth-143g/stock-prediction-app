@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nse-quant-platform
+  labels:
+    app: nse-quant-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nse-quant-platform
+  template:
+    metadata:
+      labels:
+        app: nse-quant-platform
+    spec:
+      containers:
+      - name: web
+        image: nse-quant-platform:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: nse-quant-config
+        env:
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: nse-quant-secrets
+              key: JWT_SECRET_KEY
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: nse-quant-secrets
+              key: DB_PASS
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /api/stocks
+            port: 5000
+          initialDelaySeconds: 20
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /api/stocks
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nse-quant-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nse-quant-platform
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75

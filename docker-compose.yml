@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------------------------
+  # 1. Flask Web Application Engine & WebSocket Server
+  # ---------------------------------------------------------------------------
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nse_quant_app
+    restart: always
+    environment:
+      - FLASK_ENV=${FLASK_ENV:-production}
+      - PYTHONUNBUFFERED=1
+      - DB_TYPE=${DB_TYPE:-mysql}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-stock_predictions}
+      - DB_USER=${DB_USER:-stock_user}
+      - DB_PASSWORD=${DB_PASSWORD:-stock_password_quant}
+      - SMTP_SERVER=${SMTP_SERVER:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USERNAME=${SMTP_USERNAME:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - SMTP_SENDER_EMAIL=${SMTP_SENDER_EMAIL:-}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-enterprise_quant_secret_jwt_key_2026_super_secure}
+    ports:
+      - "5000:5000"
+    volumes:
+      - app_logs:/app/logs
+      - app_models:/app/models
+      - app_data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ---------------------------------------------------------------------------
+  # 2. Production MySQL 8.0 Database Engine
+  # ---------------------------------------------------------------------------
+  db:
+    image: mysql:8.0
+    container_name: nse_quant_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-stock_predictions}
+      MYSQL_USER: ${DB_USER:-stock_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-stock_password_quant}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_password_quant}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # 3. Nginx High-Performance Reverse Proxy & SSL Router
+  # ---------------------------------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: nse_quant_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - web
+
+volumes:
+  mysql_data:
+  app_logs:
+  app_models:
+  app_data:

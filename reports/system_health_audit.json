@@ -1,0 +1,175 @@
+{
+  "database": {
+    "passed": true,
+    "details": {
+      "table_count": 11,
+      "tables": [
+        "users",
+        "sqlite_sequence",
+        "market_data",
+        "user_alerts",
+        "user_portfolios",
+        "user_paper_account",
+        "user_watchlists",
+        "raw_news",
+        "daily_sentiment_summary",
+        "scraper_runs",
+        "raw_news_excluded"
+      ]
+    }
+  },
+  "market_data": {
+    "passed": true,
+    "details": {
+      "ticker": "RELIANCE",
+      "exchange": "NSE",
+      "ltp": 1170.3,
+      "open": 1179.0,
+      "high": 1179.0,
+      "low": 1160.2,
+      "previous_close": 1178.0,
+      "volume": 12081697,
+      "change": -7.7,
+      "change_percent": -0.65,
+      "timestamp": "2026-10-10T22:18:07.404787+05:30",
+      "source": "yfinance_fallback"
+    }
+  },
+  "ml_inference": {
+    "passed": true,
+    "details": {
+      "current_price": 1170.3,
+      "signal": "HOLD \ud83d\udfe1",
+      "expected_return_pct": 0.0,
+      "prediction_count": 7
+    }
+  },
+  "quant_engine": {
+    "passed": true,
+    "details": {
+      "portfolio_ok": true,
+      "backtest_sharpe": -5.13
+    }
+  },
+  "news_sentiment": {
+    "passed": true,
+    "details": {
+      "status": "success",
+      "ticker": "RELIANCE.NS",
+      "company_name": "Reliance Industries",
+      "sector_name": "Energy & Conglomerate",
+      "overall_sentiment": "NEUTRAL",
+      "sentiment_score": 0.0,
+      "confidence_pct": 50.0,
+      "article_count": 4,
+      "bullish_count": 0,
+      "bearish_count": 0,
+      "neutral_count": 4,
+      "sector_sentiment": {
+        "sector": "Energy & Conglomerate",
+        "sector_score": 0.15,
+        "sector_sentiment": "BULLISH"
+      },
+      "impact_summary": "Neutral news sentiment for Reliance Industries (Energy & Conglomerate).",
+      "sources_used": [
+        "Economic Times",
+        "Yahoo Finance",
+        "Moneycontrol",
+        "Google News"
+      ],
+      "headlines": [
+        {
+          "title": "Reliance Industries reports robust quarterly revenue growth driven by strong market demand in Energy & Conglomerate",
+          "source": "Economic Times",
+          "date": "10 Oct 2026",
+          "link": "#",
+          "score": 1.0,
+          "sentiment": "BULLISH",
+          "is_fallback": true
+        },
+        {
+          "title": "Analyst price targets upgraded for Reliance Industries shares following positive institutional inflows",
+          "source": "Yahoo Finance",
+          "date": "10 Oct 2026",
+          "link": "#",
+          "score": 1.0,
+          "sentiment": "BULLISH",
+          "is_fallback": true
+        },
+        {
+          "title": "Reliance Industries board approves expansion strategy and strategic dividend allocation",
+          "source": "Moneycontrol",
+          "date": "10 Oct 2026",
+          "link": "#",
+          "score": 1.0,
+          "sentiment": "BULLISH",
+          "is_fallback": true
+        },
+        {
+          "title": "Institutional buyers increase stake in Reliance Industries amid sector rally",
+          "source": "Google News",
+          "date": "10 Oct 2026",
+          "link": "#",
+          "score": 1.0,
+          "sentiment": "BULLISH",
+          "is_fallback": true
+        }
+      ],
+      "news_is_fallback": true
+    }
+  },
+  "flask_web_and_api": {
+    "passed": true,
+    "details": {
+      "/": {
+        "name": "Dashboard HTML",
+        "status_code": 200,
+        "ok": true
+      },
+      "/login": {
+        "name": "Login HTML",
+        "status_code": 200,
+        "ok": true
+      },
+      "/register": {
+        "name": "Register HTML",
+        "status_code": 200,
+        "ok": true
+      },
+      "/static/css/style.css": {
+        "name": "CSS Stylesheet",
+        "status_code": 200,
+        "ok": true
+      },
+      "/static/js/dashboard.js": {
+        "name": "Dashboard JS",
+        "status_code": 200,
+        "ok": true
+      },
+      "/static/js/tradingview_chart.js": {
+        "name": "TradingView JS",
+        "status_code": 200,
+        "ok": true
+      },
+      "/api/stocks": {
+        "name": "Stock List API",
+        "status_code": 200,
+        "ok": true
+      },
+      "/api/live/RELIANCE.NS": {
+        "name": "Live Quote API",
+        "status_code": 200,
+        "ok": true
+      },
+      "/api/predict/RELIANCE.NS": {
+        "name": "Prediction API",
+        "status_code": 200,
+        "ok": true
+      }
+    }
+  },
+  "streamlit_import": {
+    "passed": true,
+    "details": "frontend/streamlit_app.py syntax and module verified"
+  }
+}

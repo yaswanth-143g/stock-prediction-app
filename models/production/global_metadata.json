@@ -1,0 +1,14 @@
+{
+    "model_type": "Global Ensemble (MultiOutput RandomForest)",
+    "source_dataset": "merge-csv.csv",
+    "total_tickers": 200,
+    "total_samples": 195048,
+    "trained_at": "2026-09-24 12:28:00",
+    "saved_at": "2026-09-24 12:28:00",
+    "model_status": "TRAINED",
+    "metrics": {
+        "R2_%": 84.2,
+        "MAE": 0.011,
+        "RMSE": 0.016
+    }
+}

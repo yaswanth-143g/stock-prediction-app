@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In — NSE Quant Stock Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #080B10;
+            --card-bg: #0F151D;
+            --card-border: #1C2632;
+            --primary: #2563EB;
+            --primary-glow: rgba(37, 99, 235, 0.25);
+            --accent-green: #10B981;
+            --accent-cyan: #38BDF8;
+            --text-main: #F5F7FA;
+            --text-muted: #697586;
+            --danger: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .auth-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .brand-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .card-header {
+            margin-bottom: 24px;
+        }
+
+        .card-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .alert-box {
+            display: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6ee7b7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            color: #64748b;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--primary-glow);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .form-input:focus + .input-icon {
+            color: var(--primary);
+        }
+
+        .toggle-pw {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .toggle-pw:hover {
+            color: #fff;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 14px var(--primary-glow);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .auth-footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .auth-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .auth-link:hover {
+            color: var(--accent-cyan);
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+
+    <div class="auth-container">
+        <div class="brand-header">
+            <a href="/" class="brand-logo">
+                <div class="brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <div class="brand-title">NSE QUANT PLATFORM</div>
+                    <div class="brand-subtitle">AI & Algorithmic Stock Trading Intelligence</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="auth-card">
+            <div class="card-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access live AI forecasts & MySQL portfolio data</p>
+            </div>
+
+            <div id="alert-box" class="alert-box">
+                <i id="alert-icon" class="fa-solid fa-circle-exclamation"></i>
+                <span id="alert-msg"></span>
+            </div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email or Username</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="email" class="form-input" placeholder="admin@quant.com or username" required autofocus>
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="••••••••••••" required>
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <button type="button" class="toggle-pw" onclick="togglePasswordVisibility()">
+                            <i id="pw-icon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember" checked>
+                        <span>Remember session</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="btn-login" class="btn-submit">
+                    <span id="btn-text">Sign In to Terminal</span>
+                    <div id="btn-spinner" class="spinner"></div>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Don't have an account? <a href="/register" class="auth-link">Create Account</a>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Return to Terminal Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showAlert(message, isSuccess = false) {
+            const box = document.getElementById("alert-box");
+            const msg = document.getElementById("alert-msg");
+            const icon = document.getElementById("alert-icon");
+
+            box.className = "alert-box " + (isSuccess ? "alert-success" : "alert-danger");
+            icon.className = "fa-solid " + (isSuccess ? "fa-circle-check" : "fa-circle-exclamation");
+            msg.textContent = message;
+            box.style.display = "flex";
+        }
+
+        function togglePasswordVisibility() {
+            const pwInput = document.getElementById("password");
+            const pwIcon = document.getElementById("pw-icon");
+            if (pwInput.type === "password") {
+                pwInput.type = "text";
+                pwIcon.className = "fa-solid fa-eye-slash";
+            } else {
+                pwInput.type = "password";
+                pwIcon.className = "fa-solid fa-eye";
+            }
+        }
+
+        document.getElementById("login-form").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const btn = document.getElementById("btn-login");
+            const btnText = document.getElementById("btn-text");
+            const btnSpinner = document.getElementById("btn-spinner");
+
+            if (!email || !password) {
+                showAlert("Please enter both email/username and password.");
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.textContent = "Authenticating...";
+            btnSpinner.style.display = "inline-block";
+
+            try {
+                const response = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === "success") {
+                    try { localStorage.removeItem("user_portfolio_holdings"); } catch (e) {}
+                    localStorage.setItem("jwt_token", data.token);
+                    localStorage.setItem("user_info", JSON.stringify(data.user));
+                    showAlert("Authentication successful! Redirecting to Terminal...", true);
+
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 1000);
+                } else {
+                    showAlert(data.message || "Invalid credentials. Please try again.");
+                    btn.disabled = false;
+                    btnText.textContent = "Sign In to Terminal";
+                    btnSpinner.style.display = "none";
+                }
+            } catch (err) {
+                showAlert("Connection error: Unable to reach server.");
+                btn.disabled = false;
+                btnText.textContent = "Sign In to Terminal";
+                btnSpinner.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

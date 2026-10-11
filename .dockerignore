@@ -1,0 +1,44 @@
+# Git and IDE
+.git
+.gitignore
+.gitattributes
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Large Datasets and Temp Files
+merge-csv.csv
+price_data_clean/
+Stock_Data/*.csv
+!Stock_Data/RELIANCE.NS.csv
+*.tmp
+*.temp
+/tmp/
+
+# Logs and Runtime Artifacts
+*.log
+logs/*
+!logs/.gitkeep
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
