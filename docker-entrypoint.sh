@@ -33,6 +33,6 @@ WORKER_CLASS=${GUNICORN_WORKER_CLASS:-gthread}
 WORKERS=${GUNICORN_WORKERS:-1}
 THREADS=${GUNICORN_THREADS:-8}
 
-echo "⚡ Launching Gunicorn WSGI Server ($WORKERS Workers, $THREADS Threads, $WORKER_CLASS Engine)..."
-exec gunicorn --worker-class "$WORKER_CLASS" -w "$WORKERS" --threads "$THREADS" --bind 0.0.0.0:5000 app:app
+echo "⚡ Launching Gunicorn WSGI Server ($WORKERS Workers, $THREADS Threads, $WORKER_CLASS Engine on port ${PORT:-5000})..."
+exec gunicorn --worker-class "$WORKER_CLASS" -w "$WORKERS" --threads "$THREADS" --bind "0.0.0.0:${PORT:-5000}" app:app
 
